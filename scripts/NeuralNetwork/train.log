@@ -1,0 +1,171 @@
+INFO:root:creating directories...
+INFO:root:writing args to file...
+INFO:root:loading dataset...
+INFO:root:creating neural network...
+INFO:root:prepare training...
+INFO:root:starting training...
+INFO:tensorflow:Error reported to Coordinator: <class 'tensorflow.python.framework.errors_impl.CancelledError'>, Enqueue operation was cancelled
+	 [[Node: valid_data_queue/queue_enqueue = QueueEnqueueV2[Tcomponents=[DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_INT32, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_INT32, DT_INT32, DT_INT32], timeout_ms=-1, _device="/job:localhost/replica:0/task:0/device:CPU:0"](valid_data_queue/queue, _arg_valid_data_queue/E_0_1, _arg_valid_data_queue/Ea_0_2, _arg_valid_data_queue/F_0_3, _arg_valid_data_queue/Z_0_7, _arg_valid_data_queue/D_0_0, _arg_valid_data_queue/Q_0_4, _arg_valid_data_queue/Qa_0_5, _arg_valid_data_queue/R_0_6, _arg_valid_data_queue/idx_i_0_9, _arg_valid_data_queue/idx_j_0_10, _arg_valid_data_queue/batch_seg_0_8)]]
+
+Caused by op 'valid_data_queue/queue_enqueue', defined at:
+  File "./train.py", line 139, in <module>
+    valid_queue = DataQueue(data_provider.next_valid_batch, capacity=args.num_valid//args.valid_batch_size, scope="valid_data_queue")
+  File "/home/kaeser/Desktop/project/NeuralNetwork/training/DataQueue.py", line 30, in __init__
+    self._enqueue_op = self.queue.enqueue(placeholders)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/ops/data_flow_ops.py", line 339, in enqueue
+    self._queue_ref, vals, name=scope)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/ops/gen_data_flow_ops.py", line 3977, in queue_enqueue_v2
+    timeout_ms=timeout_ms, name=name)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/framework/op_def_library.py", line 787, in _apply_op_helper
+    op_def=op_def)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/util/deprecation.py", line 454, in new_func
+    return func(*args, **kwargs)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/framework/ops.py", line 3155, in create_op
+    op_def=op_def)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/framework/ops.py", line 1717, in __init__
+    self._traceback = tf_stack.extract_stack()
+
+CancelledError (see above for traceback): Enqueue operation was cancelled
+	 [[Node: valid_data_queue/queue_enqueue = QueueEnqueueV2[Tcomponents=[DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_INT32, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_INT32, DT_INT32, DT_INT32], timeout_ms=-1, _device="/job:localhost/replica:0/task:0/device:CPU:0"](valid_data_queue/queue, _arg_valid_data_queue/E_0_1, _arg_valid_data_queue/Ea_0_2, _arg_valid_data_queue/F_0_3, _arg_valid_data_queue/Z_0_7, _arg_valid_data_queue/D_0_0, _arg_valid_data_queue/Q_0_4, _arg_valid_data_queue/Qa_0_5, _arg_valid_data_queue/R_0_6, _arg_valid_data_queue/idx_i_0_9, _arg_valid_data_queue/idx_j_0_10, _arg_valid_data_queue/batch_seg_0_8)]]
+
+INFO:root:creating directories...
+INFO:root:writing args to file...
+INFO:root:loading dataset...
+INFO:root:creating neural network...
+INFO:root:prepare training...
+INFO:root:starting training...
+INFO:tensorflow:Error reported to Coordinator: <class 'tensorflow.python.framework.errors_impl.CancelledError'>, Enqueue operation was cancelled
+	 [[Node: train_data_queue/queue_enqueue = QueueEnqueueV2[Tcomponents=[DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_INT32, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_INT32, DT_INT32, DT_INT32], timeout_ms=-1, _device="/job:localhost/replica:0/task:0/device:CPU:0"](train_data_queue/queue, _arg_train_data_queue/E_0_1, _arg_train_data_queue/Ea_0_2, _arg_train_data_queue/F_0_3, _arg_train_data_queue/Z_0_7, _arg_train_data_queue/D_0_0, _arg_train_data_queue/Q_0_4, _arg_train_data_queue/Qa_0_5, _arg_train_data_queue/R_0_6, _arg_train_data_queue/idx_i_0_9, _arg_train_data_queue/idx_j_0_10, _arg_train_data_queue/batch_seg_0_8)]]
+
+Caused by op 'train_data_queue/queue_enqueue', defined at:
+  File "./train.py", line 138, in <module>
+    train_queue = DataQueue(data_provider.next_batch, capacity=1000, scope="train_data_queue")
+  File "/home/kaeser/Desktop/project/NeuralNetwork/training/DataQueue.py", line 30, in __init__
+    self._enqueue_op = self.queue.enqueue(placeholders)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/ops/data_flow_ops.py", line 339, in enqueue
+    self._queue_ref, vals, name=scope)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/ops/gen_data_flow_ops.py", line 3977, in queue_enqueue_v2
+    timeout_ms=timeout_ms, name=name)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/framework/op_def_library.py", line 787, in _apply_op_helper
+    op_def=op_def)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/util/deprecation.py", line 454, in new_func
+    return func(*args, **kwargs)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/framework/ops.py", line 3155, in create_op
+    op_def=op_def)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/framework/ops.py", line 1717, in __init__
+    self._traceback = tf_stack.extract_stack()
+
+CancelledError (see above for traceback): Enqueue operation was cancelled
+	 [[Node: train_data_queue/queue_enqueue = QueueEnqueueV2[Tcomponents=[DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_INT32, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_INT32, DT_INT32, DT_INT32], timeout_ms=-1, _device="/job:localhost/replica:0/task:0/device:CPU:0"](train_data_queue/queue, _arg_train_data_queue/E_0_1, _arg_train_data_queue/Ea_0_2, _arg_train_data_queue/F_0_3, _arg_train_data_queue/Z_0_7, _arg_train_data_queue/D_0_0, _arg_train_data_queue/Q_0_4, _arg_train_data_queue/Qa_0_5, _arg_train_data_queue/R_0_6, _arg_train_data_queue/idx_i_0_9, _arg_train_data_queue/idx_j_0_10, _arg_train_data_queue/batch_seg_0_8)]]
+
+INFO:root:creating directories...
+INFO:root:writing args to file...
+INFO:root:loading dataset...
+INFO:root:creating neural network...
+INFO:root:prepare training...
+INFO:root:starting training...
+INFO:root:creating directories...
+INFO:root:writing args to file...
+INFO:root:loading dataset...
+INFO:root:creating neural network...
+INFO:root:prepare training...
+INFO:root:starting training...
+INFO:tensorflow:Error reported to Coordinator: <class 'tensorflow.python.framework.errors_impl.CancelledError'>, Enqueue operation was cancelled
+	 [[Node: train_data_queue/queue_enqueue = QueueEnqueueV2[Tcomponents=[DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_INT32, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_INT32, DT_INT32, DT_INT32], timeout_ms=-1, _device="/job:localhost/replica:0/task:0/device:CPU:0"](train_data_queue/queue, _arg_train_data_queue/E_0_1, _arg_train_data_queue/Ea_0_2, _arg_train_data_queue/F_0_3, _arg_train_data_queue/Z_0_7, _arg_train_data_queue/D_0_0, _arg_train_data_queue/Q_0_4, _arg_train_data_queue/Qa_0_5, _arg_train_data_queue/R_0_6, _arg_train_data_queue/idx_i_0_9, _arg_train_data_queue/idx_j_0_10, _arg_train_data_queue/batch_seg_0_8)]]
+
+Caused by op 'train_data_queue/queue_enqueue', defined at:
+  File "./train.py", line 138, in <module>
+    train_queue = DataQueue(data_provider.next_batch, capacity=1000, scope="train_data_queue")
+  File "/home/kaeser/Desktop/project/NeuralNetwork/training/DataQueue.py", line 30, in __init__
+    self._enqueue_op = self.queue.enqueue(placeholders)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/ops/data_flow_ops.py", line 339, in enqueue
+    self._queue_ref, vals, name=scope)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/ops/gen_data_flow_ops.py", line 3977, in queue_enqueue_v2
+    timeout_ms=timeout_ms, name=name)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/framework/op_def_library.py", line 787, in _apply_op_helper
+    op_def=op_def)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/util/deprecation.py", line 454, in new_func
+    return func(*args, **kwargs)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/framework/ops.py", line 3155, in create_op
+    op_def=op_def)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/framework/ops.py", line 1717, in __init__
+    self._traceback = tf_stack.extract_stack()
+
+CancelledError (see above for traceback): Enqueue operation was cancelled
+	 [[Node: train_data_queue/queue_enqueue = QueueEnqueueV2[Tcomponents=[DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_INT32, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_INT32, DT_INT32, DT_INT32], timeout_ms=-1, _device="/job:localhost/replica:0/task:0/device:CPU:0"](train_data_queue/queue, _arg_train_data_queue/E_0_1, _arg_train_data_queue/Ea_0_2, _arg_train_data_queue/F_0_3, _arg_train_data_queue/Z_0_7, _arg_train_data_queue/D_0_0, _arg_train_data_queue/Q_0_4, _arg_train_data_queue/Qa_0_5, _arg_train_data_queue/R_0_6, _arg_train_data_queue/idx_i_0_9, _arg_train_data_queue/idx_j_0_10, _arg_train_data_queue/batch_seg_0_8)]]
+
+INFO:root:creating directories...
+INFO:root:writing args to file...
+INFO:root:loading dataset...
+INFO:root:creating neural network...
+INFO:root:prepare training...
+INFO:tensorflow:Restoring parameters from 20181003081613_I7JAGFR9_F128K64b5a2i3o1cut6.0e1d1l20.0nh0.01keep1.0/logs/model.ckpt-3120000
+INFO:root:starting training...
+INFO:root:creating directories...
+INFO:root:writing args to file...
+INFO:root:loading dataset...
+INFO:root:creating neural network...
+INFO:root:prepare training...
+INFO:root:starting training...
+INFO:tensorflow:Error reported to Coordinator: <class 'tensorflow.python.framework.errors_impl.CancelledError'>, Enqueue operation was cancelled
+	 [[Node: valid_data_queue/queue_enqueue = QueueEnqueueV2[Tcomponents=[DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_INT32, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_INT32, DT_INT32, DT_INT32], timeout_ms=-1, _device="/job:localhost/replica:0/task:0/device:CPU:0"](valid_data_queue/queue, _arg_valid_data_queue/E_0_1, _arg_valid_data_queue/Ea_0_2, _arg_valid_data_queue/F_0_3, _arg_valid_data_queue/Z_0_7, _arg_valid_data_queue/D_0_0, _arg_valid_data_queue/Q_0_4, _arg_valid_data_queue/Qa_0_5, _arg_valid_data_queue/R_0_6, _arg_valid_data_queue/idx_i_0_9, _arg_valid_data_queue/idx_j_0_10, _arg_valid_data_queue/batch_seg_0_8)]]
+
+Caused by op 'valid_data_queue/queue_enqueue', defined at:
+  File "./train.py", line 142, in <module>
+    valid_queue = DataQueue(data_provider.next_valid_batch, capacity=args.num_valid//args.valid_batch_size, scope="valid_data_queue")
+  File "/home/kaeser/Desktop/project/NeuralNetwork/training/DataQueue.py", line 30, in __init__
+    self._enqueue_op = self.queue.enqueue(placeholders)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/ops/data_flow_ops.py", line 339, in enqueue
+    self._queue_ref, vals, name=scope)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/ops/gen_data_flow_ops.py", line 3977, in queue_enqueue_v2
+    timeout_ms=timeout_ms, name=name)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/framework/op_def_library.py", line 787, in _apply_op_helper
+    op_def=op_def)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/util/deprecation.py", line 454, in new_func
+    return func(*args, **kwargs)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/framework/ops.py", line 3155, in create_op
+    op_def=op_def)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/framework/ops.py", line 1717, in __init__
+    self._traceback = tf_stack.extract_stack()
+
+CancelledError (see above for traceback): Enqueue operation was cancelled
+	 [[Node: valid_data_queue/queue_enqueue = QueueEnqueueV2[Tcomponents=[DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_INT32, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_INT32, DT_INT32, DT_INT32], timeout_ms=-1, _device="/job:localhost/replica:0/task:0/device:CPU:0"](valid_data_queue/queue, _arg_valid_data_queue/E_0_1, _arg_valid_data_queue/Ea_0_2, _arg_valid_data_queue/F_0_3, _arg_valid_data_queue/Z_0_7, _arg_valid_data_queue/D_0_0, _arg_valid_data_queue/Q_0_4, _arg_valid_data_queue/Qa_0_5, _arg_valid_data_queue/R_0_6, _arg_valid_data_queue/idx_i_0_9, _arg_valid_data_queue/idx_j_0_10, _arg_valid_data_queue/batch_seg_0_8)]]
+
+INFO:root:creating directories...
+INFO:root:writing args to file...
+INFO:root:loading dataset...
+INFO:root:creating neural network...
+INFO:root:prepare training...
+INFO:root:creating directories...
+INFO:root:writing args to file...
+INFO:root:loading dataset...
+INFO:root:creating neural network...
+INFO:root:prepare training...
+INFO:root:starting training...
+INFO:tensorflow:Error reported to Coordinator: <class 'tensorflow.python.framework.errors_impl.CancelledError'>, Enqueue operation was cancelled
+	 [[node valid_data_queue/queue_enqueue (defined at /home/kaeser/Desktop/reports/tutorial_nn/scripts/train_nn/NeuralNetwork/training/DataQueue.py:30)  = QueueEnqueueV2[Tcomponents=[DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_INT32, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_INT32, DT_INT32, DT_INT32], timeout_ms=-1, _device="/job:localhost/replica:0/task:0/device:CPU:0"](valid_data_queue/queue, _arg_valid_data_queue/E_0_1, _arg_valid_data_queue/Ea_0_2, _arg_valid_data_queue/F_0_3, _arg_valid_data_queue/Z_0_7, _arg_valid_data_queue/D_0_0, _arg_valid_data_queue/Q_0_4, _arg_valid_data_queue/Qa_0_5, _arg_valid_data_queue/R_0_6, _arg_valid_data_queue/idx_i_0_9, _arg_valid_data_queue/idx_j_0_10, _arg_valid_data_queue/batch_seg_0_8)]]
+
+Caused by op 'valid_data_queue/queue_enqueue', defined at:
+  File "./train.py", line 142, in <module>
+    valid_queue = DataQueue(data_provider.next_valid_batch, capacity=args.num_valid//args.valid_batch_size, scope="valid_data_queue")
+  File "/home/kaeser/Desktop/reports/tutorial_nn/scripts/train_nn/NeuralNetwork/training/DataQueue.py", line 30, in __init__
+    self._enqueue_op = self.queue.enqueue(placeholders)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/ops/data_flow_ops.py", line 341, in enqueue
+    self._queue_ref, vals, name=scope)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/ops/gen_data_flow_ops.py", line 3984, in queue_enqueue_v2
+    timeout_ms=timeout_ms, name=name)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/framework/op_def_library.py", line 787, in _apply_op_helper
+    op_def=op_def)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/util/deprecation.py", line 488, in new_func
+    return func(*args, **kwargs)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/framework/ops.py", line 3274, in create_op
+    op_def=op_def)
+  File "/home/kaeser/.local/lib/python3.5/site-packages/tensorflow/python/framework/ops.py", line 1770, in __init__
+    self._traceback = tf_stack.extract_stack()
+
+CancelledError (see above for traceback): Enqueue operation was cancelled
+	 [[node valid_data_queue/queue_enqueue (defined at /home/kaeser/Desktop/reports/tutorial_nn/scripts/train_nn/NeuralNetwork/training/DataQueue.py:30)  = QueueEnqueueV2[Tcomponents=[DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_INT32, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_FLOAT, DT_INT32, DT_INT32, DT_INT32], timeout_ms=-1, _device="/job:localhost/replica:0/task:0/device:CPU:0"](valid_data_queue/queue, _arg_valid_data_queue/E_0_1, _arg_valid_data_queue/Ea_0_2, _arg_valid_data_queue/F_0_3, _arg_valid_data_queue/Z_0_7, _arg_valid_data_queue/D_0_0, _arg_valid_data_queue/Q_0_4, _arg_valid_data_queue/Qa_0_5, _arg_valid_data_queue/R_0_6, _arg_valid_data_queue/idx_i_0_9, _arg_valid_data_queue/idx_j_0_10, _arg_valid_data_queue/batch_seg_0_8)]]
+
+INFO:root:creating directories...
+INFO:root:writing args to file...
+INFO:root:loading dataset...

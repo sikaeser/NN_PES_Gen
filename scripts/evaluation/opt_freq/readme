@@ -1,0 +1,7 @@
+Readme on how to optimize a structure and calculate harmonic frequencies using ASE.
+
+1) In both python scripts make sure the parameters (including path to your best model, hyperparameters, etc...) are exactly as used for training
+2) Create an .xyz file containing the molecule/structure you want to predict
+3) Optimize it using ASE (./optimize.py -i structure.xyz --fmax 0.00001)
+4) Visualize the optimized structure to make sure everything is as expected
+5) Calculate harmonic frequencies using ASE (./ase_vibrations.py -i opt_structure.xyz)

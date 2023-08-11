@@ -1,0 +1,50 @@
+!MP2/6-31G
+memory,125,m
+symmetry,nosym
+wf,charge=0,spin=0
+basis=6-31G(d,p)
+
+geometry={
+ C         -1.1740564871        0.0101438678       -0.5289520908
+ C          0.0224740532        0.0312188084       -1.2143015693
+ C1         -1.1722659464       -0.0263496138        0.8568447392
+ C2          0.0268012605       -0.0414758342        1.5496552228
+ C          1.2280228825       -0.0203981980        0.8530893274
+ C          1.2251887802        0.0161774989       -0.5264152472
+ H         -2.1037704855        0.0223017112       -1.0662499538
+ H         -2.1078485056       -0.0423721394        1.3898269838
+ H          2.1503488517       -0.0323578298        1.4032510712
+ H          2.1525451229        0.0323990794       -1.0677580587
+ Cl         0.0236523236        0.0778464996       -2.9590405650
+ O1          0.0897886087       -0.0765306146        2.8964348824
+ H1         -0.7720214532       -0.0877833328        3.2780436212
+}
+
+
+
+
+theta = -15  !just for the loop to start at zero
+dt = 15      !dihedral angle step size
+ii = 0       !counter for table
+
+do i=1,7     !with 7 steps you get up to 90 degrees, the second part of the scan is symmetric
+ii = ii + 1
+theta = theta + dt
+hf
+mp2
+
+{optg,method=slrf
+primitive,D1,dihedral,atoms=[C1, C2, O1, H1];
+constraint,theta,D1;
+}
+
+emp2(ii)=energy
+thlist(ii)=theta
+
+enddo
+
+
+{table,thlist,emp2   !produce a table with results
+head, theta ,emp2    !modify column headers for table
+}  
+

@@ -1,0 +1,37 @@
+!MP2/6-31G
+memory,125,m
+symmetry,nosym
+wf,charge=0,spin=0
+basis=6-31G(d,p)
+
+geometry={
+}
+
+
+
+
+theta = -15  !just for the loop to start at zero
+dt = 15      !dihedral angle step size
+ii = 0       !counter for table
+
+do i=1,7     !with 7 steps you get up to 90 degrees, the second part of the scan is symmetric
+ii = ii + 1
+theta = theta + dt
+hf
+mp2
+
+{optg,method=slrf
+primitive,D1,dihedral,atoms=[C1, C2, O1, H1];
+constraint,theta,D1;
+}
+
+emp2(ii)=energy
+thlist(ii)=theta
+
+enddo
+
+
+{table,thlist,emp2   !produce a table with results
+head, theta ,emp2    !modify column headers for table
+}  
+

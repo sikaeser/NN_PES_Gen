@@ -1,0 +1,278 @@
+
+ Working directory              : /scratch/kaeser/molprojob_37884721/molpro.jXuMsFoOns/
+ Global scratch directory       : /scratch/kaeser/molprojob_37884721/molpro.jXuMsFoOns/
+ Wavefunction directory         : /scratch/kaeser/molprojob_37884721/
+ Main file repository           : /scratch/kaeser/molprojob_37884721/molpro.jXuMsFoOns/
+
+ id        : meuwlygroup
+
+ Nodes         nprocs
+ node08.cluster    1
+ GA implementation: GlobalArrays
+ GA implementation (serial work in mppx): heap memory
+
+ Using customized tuning parameters: mindgm=1; mindgv=20; mindgc=4; mindgr=1; noblas=0; minvec=7
+ default implementation of scratch files=df  
+
+
+ Variables initialized (1009), CPU time= 0.00 sec
+                                                                                 !MP2/6-31G(d,p)
+  symmetry,nosym
+  wf,charge=0,spin=2
+  basis=6-31G(d,p)
+  geometry={
+   C    0.0 0.0 0.0
+  }
+ 
+  uhf
+  ump2
+ Commands initialized (809), CPU time= 0.01 sec, 659 directives.
+ Default parameters read. Elapsed time= 0.10 sec
+
+ Checking input...
+ Passed
+1
+
+
+                                         ***  PROGRAM SYSTEM MOLPRO  ***
+                                       Copyright, TTI GmbH Stuttgart, 2015
+                                    Version 2021.1 linked May  9 2021 11:08:22
+
+
+ **********************************************************************************************************************************
+ LABEL *                                                                                 
+  64 bit serial version                                                                  DATE: 17-Jun-21          TIME: 11:19:33  
+ **********************************************************************************************************************************
+
+ SHA1:             a9e37c2c4b992bfe61825d750734133f1ab85a8c
+ **********************************************************************************************************************************
+
+ Memory per process:        32 MW
+ Total memory per node:     32 MW
+
+ GA preallocation disabled
+ GA check disabled
+
+ Variable memory set to 32.0 MW
+
+ SETTING BASIS          =    6-31G(D,P)
+ ZSYMEL=NOSYM
+
+
+ Geometry recognized as XYZ
+
+
+
+ Recomputing integrals since basis changed
+
+
+ Using spherical harmonics
+
+ Library entry C      S 6-31G                selected for orbital group  1
+ Library entry C      P 6-31G                selected for orbital group  1
+ Library entry C      D 6-31G*               selected for orbital group  1
+
+
+ PROGRAM * SEWARD (Integral evaluation for generally contracted gaussian basis sets)     Author: Roland Lindh, 1990
+
+ Geometry written to block  1 of record 700
+
+ Orientation using atomic masses  
+ Molecule type: Atom
+ Rotational constants:       0.0000000      0.0000000      0.0000000 GHz  (calculated with average atomic masses)
+
+ Point group  C1  
+
+
+
+ ATOMIC COORDINATES
+
+ NR  ATOM    CHARGE       X              Y              Z
+
+   1  C       6.00    0.000000000    0.000000000    0.000000000
+
+ NUCLEAR CHARGE:                    6
+ NUMBER OF PRIMITIVE AOS:          28
+ NUMBER OF SYMMETRY AOS:           27
+ NUMBER OF CONTRACTIONS:           14   (   14A   )
+ NUMBER OF INNER CORE ORBITALS:     0   (    0A   )
+ NUMBER OF OUTER CORE ORBITALS:     1   (    1A   )
+ NUMBER OF VALENCE ORBITALS:        4   (    4A   )
+
+
+ NUCLEAR REPULSION ENERGY    0.00000000
+
+ EXTRA SYMMETRY OF AOS IN SYMMETRY 1:   1 1 1 2 3 4 2 3 4 5   6 7 8 9
+
+ Eigenvalues of metric
+
+         1 0.187E+00 0.430E+00 0.430E+00 0.430E+00 0.911E+00 0.100E+01 0.100E+01 0.100E+01
+
+
+ Contracted 2-electron integrals neglected if value below      1.0D-11
+ AO integral compression algorithm  1   Integral accuracy      1.0D-11
+
+     0.262 MB (compressed) written to integral file ( 48.0%)
+
+
+ NUMBER OF SORTED TWO-ELECTRON INTEGRALS:       5565.     BUFFER LENGTH:  32768
+ NUMBER OF SEGMENTS:   1  SEGMENT LENGTH:       5565      RECORD LENGTH: 524288
+
+ Memory used in sort:       0.56 MW
+
+ SORT1 READ        6730. AND WROTE         776. INTEGRALS IN      1 RECORDS. CPU TIME:     0.00 SEC, REAL TIME:     0.00 SEC
+ SORT2 READ         776. AND WROTE        5565. INTEGRALS IN      1 RECORDS. CPU TIME:     0.00 SEC, REAL TIME:     0.00 SEC
+
+ FILE SIZES:   FILE 1:    30.2 MBYTE,  FILE 4:     4.2 MBYTE,   TOTAL:     34.4 MBYTE
+
+ OPERATOR DM      FOR CENTER  0  COORDINATES:    0.000000    0.000000    0.000000
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      19       28.57       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1300     1700   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    ERIS     OPER   
+
+ PROGRAMS   *        TOTAL       INT
+ CPU TIMES  *         0.28      0.14
+ REAL TIME  *         1.11 SEC
+ DISK USED  *        33.08 MB
+ **********************************************************************************************************************************
+
+
+ Program * Unrestricted Hartree-Fock
+
+ Orbital guess generated from atomic densities. Full valence occupancy:    3
+
+ Initial alpha occupancy:   4
+ Initial beta  occupancy:   2
+
+ Elapsed time for starting guess:      0.01 sec
+
+ NELEC=    6   SYM=1   MS2=2   THRE=1.0D-08   THRD=3.2D-06   THRG=3.2D-06  HFMA2=F  DIIS_START=2   DIIS_MAX=10   DIIS_INCORE=F
+
+ Initial level shifts:    0.20 (ALPHA)    0.20 (BETA)
+
+ ITER         ETOT            DE          GRAD         DDIFF    DIIS  NEXP   TIME(IT)  TIME(TOT)  DIAG
+   1    -37.65953037   -37.65953037     0.00D+00     0.00D+00     0     0       0.01      0.02    start
+   2    -37.67876949    -0.01923912     0.23D-01     0.24D+00     1     0       0.00      0.02    diag
+   3    -37.68030905    -0.00153956     0.59D-02     0.22D-01     2     0       0.00      0.02    diag
+   4    -37.68055456    -0.00024551     0.19D-02     0.40D-02     3     0       0.00      0.02    diag
+   5    -37.68057598    -0.00002142     0.57D-03     0.23D-02     4     0       0.00      0.02    diag
+   6    -37.68057664    -0.00000066     0.95D-04     0.82D-03     5     0       0.00      0.02    diag
+   7    -37.68057666    -0.00000001     0.13D-04     0.15D-03     5     0       0.00      0.02    diag
+   8    -37.68057666    -0.00000000     0.25D-05     0.21D-04     4     0       0.00      0.02    diag
+   9    -37.68057666    -0.00000000     0.47D-06     0.38D-05     4     0       0.00      0.02    diag
+
+ Final alpha occupancy:   4
+ Final beta  occupancy:   2
+
+ !UHF STATE 1.1 Energy                -37.680576655712
+  UHF One-electron energy             -50.480847275836
+  UHF Two-electron energy              12.800270620125
+  UHF Kinetic energy                   37.702991515320
+  UHF Nuclear energy                    0.000000000000
+  UHF Virial quotient                  -0.999405488565
+
+ !UHF STATE 1.1 Dipole moment          -0.00000000    -0.00000000     0.00000000
+ Dipole moment /Debye                  -0.00000000    -0.00000000     0.00000000
+
+ EXPECTATION VALUE OF S**2:             2.00471058
+
+ Orbital energies for positive spin:
+
+           1.1          2.1          3.1          4.1          5.1          6.1
+    -11.336041    -0.819964    -0.429209    -0.429209     0.054983     0.707576
+
+ Orbital energies for negative spin:
+
+           1.1          2.1          3.1          4.1
+    -11.290962    -0.574925     0.098736     0.157842
+
+
+ HOMO      4.1    -0.429209 =     -11.6794eV
+ LUMO      5.1     0.054983 =       1.4962eV
+ LUMO-HOMO         0.484192 =      13.1755eV
+
+ Orbitals saved in record  2200.2
+
+ Occupation number threshold for pseudo-canonical orbitals: 1.9990 (occupied), 0.0010 (virtual)
+
+ Number of pseudo-canonical occupied orbitals per symmetry:    1
+ Number of active natural orbitals per symmetry:               4
+
+ Natural orbitals saved to record    2200.2 (Orbital set 3)
+
+ Orbital spaces for UNO-CAS (Min. occupation: 0.020  Max. occupation: 1.980):
+
+ Closed:        2
+ Active:        2
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      19       28.57       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1300     1700   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    ERIS     OPER   
+
+              2       4        2.63       700     1000      520     2200   
+                                         GEOM     BASIS   MCVARS     UHF  
+
+              4       3        0.07      2900     3000     3100   
+
+ PROGRAMS   *        TOTAL   UHF-SCF       INT
+ CPU TIMES  *         0.33      0.05      0.14
+ REAL TIME  *         1.17 SEC
+ DISK USED  *        33.08 MB
+ **********************************************************************************************************************************
+
+
+ PROGRAM * UMP2 (Unrestricted open-shell)     Authors: H.-J. Werner, 2001
+
+
+ Convergence thresholds:  THRVAR = 1.00D-08  THRDEN = 1.00D-06
+
+ Number of core orbitals:           1 (   1 )
+ Number of closed-shell orbitals:   1 (   1 )
+ Number of active  orbitals:        2 (   2 )
+ Number of external orbitals:      10 (  10 )
+
+ Reading UHF information from record   2200.2
+
+                               TOTAL       A-A         B-B         A-B
+ Pair energies:            -0.05086378 -0.00900780 -0.00000000 -0.04185598
+ Singles energies:          0.00000000  0.00000000  0.00000000
+
+ !Reference STATE 1.1 energy          -37.680576655712
+ !UMP2 STATE 1.1 correl. energy        -0.050863777087
+ !UMP2 STATE 1.1 total energy         -37.731440432799
+
+ !SCS-UMP2 STATE 1.1 correl. energy    -0.053229775814
+ !SCS-UMP2 STATE 1.1 total energy     -37.733806431526
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      19       28.57       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1300     1700   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    ERIS     OPER   
+
+              2       4        2.63       700     1000      520     2200   
+                                         GEOM     BASIS   MCVARS     UHF  
+
+ PROGRAMS   *        TOTAL      UMP2   UHF-SCF       INT
+ CPU TIMES  *         0.37      0.04      0.05      0.14
+ REAL TIME  *         1.22 SEC
+ DISK USED  *        33.08 MB
+ **********************************************************************************************************************************
+
+ UMP2/6-31G(D,P) energy=    -37.731440432799
+
+            UMP2         UHF-SCF
+    -37.73144043    -37.68057666
+ **********************************************************************************************************************************
+ Molpro calculation terminated

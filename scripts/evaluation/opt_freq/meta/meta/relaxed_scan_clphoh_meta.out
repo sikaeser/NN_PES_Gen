@@ -1,0 +1,3705 @@
+
+ Primary working directories    : /scratch/kaeser/molprojob_698436/molpro.5ls8r9r4PE
+ Secondary working directories  : /scratch/kaeser/molprojob_698436/molpro.5ls8r9r4PE
+ Wavefunction directory         : /scratch/kaeser/molprojob_698436/
+ Main file repository           : /scratch/kaeser/molprojob_698436/molpro.5ls8r9r4PE/
+
+ id        : meuwlygroup
+
+ Nodes         nprocs
+ node01.cluster   16
+
+ Using customized tuning parameters: mindgm=1; mindgv=20; mindgc=4; mindgr=1; noblas=0; minvec=7
+ default implementation of scratch files=sf  
+
+
+ Variables initialized (945), CPU time= 0.00 sec
+                                                                                 !MP2/6-31G
+ memory,125,m
+ symmetry,nosym
+ wf,charge=0,spin=0
+ basis=6-31G(d,p)
+ 
+ geometry={
+  C         -1.1740564871        0.0101438678       -0.5289520908
+  C          0.0224740532        0.0312188084       -1.2143015693
+  C1         -1.1722659464       -0.0263496138        0.8568447392
+  C2          0.0268012605       -0.0414758342        1.5496552228
+  C          1.2280228825       -0.0203981980        0.8530893274
+  C          1.2251887802        0.0161774989       -0.5264152472
+  H         -2.1037704855        0.0223017112       -1.0662499538
+  H         -2.1078485056       -0.0423721394        1.3898269838
+  H          2.1503488517       -0.0323578298        1.4032510712
+  H          2.1525451229        0.0323990794       -1.0677580587
+  Cl         0.0236523236        0.0778464996       -2.9590405650
+  O1          0.0897886087       -0.0765306146        2.8964348824
+  H1         -0.7720214532       -0.0877833328        3.2780436212
+ }
+ 
+ 
+ 
+ 
+ theta = -15                                                                     !just for the loop to start at zero
+ dt = 15                                                                         !dihedral angle step size
+ ii = 0                                                                          !counter for table
+ 
+ do i=1,7                                          !with 7 steps you get up to 90 degrees, the second part of the scan is symmetric
+ ii = ii + 1
+ theta = theta + dt
+ hf
+ mp2
+ 
+ {optg,method=slrf
+ primitive,D1,dihedral,atoms=[C1, C2, O1, H1];
+ constraint,theta,D1;
+ }
+ 
+ emp2(ii)=energy
+ thlist(ii)=theta
+ 
+ enddo
+ 
+ 
+ {table,thlist,emp2                                                              !produce a table with results
+ head, theta ,emp2                                                               !modify column headers for table
+ }
+ 
+ Commands  initialized (802), CPU time= 0.01 sec, 659 directives.
+ Default parameters read. Elapsed time= 0.09 sec
+
+ Checking input...
+ Passed
+1
+
+
+                                         ***  PROGRAM SYSTEM MOLPRO  ***
+                                       Copyright, TTI GmbH Stuttgart, 2015
+                                    Version 2020.1 linked Oct  6 2020 12:04:11
+
+
+ **********************************************************************************************************************************
+ LABEL *                                                                                 
+  64 bit mpp version                                                                     DATE: 31-Mar-23          TIME: 15:20:46  
+ **********************************************************************************************************************************
+
+ SHA1:             8c27446f6450a7499e38f603e13c65f775101d37
+ **********************************************************************************************************************************
+
+ Memory per process:       125 MW
+ Total memory per node:   2000 MW
+
+ GA preallocation disabled
+ GA check disabled
+
+ Variable memory set to 125.0 MW
+
+ SETTING BASIS          =    6-31G(D,P)
+ ZSYMEL=NOSYM
+
+
+ Geometry recognized as XYZ
+
+ SETTING THETA          =       -15.00000000                                  
+ SETTING DT             =        15.00000000                                  
+ SETTING II             =     0.00000000D+00                                  
+
+ DO I                   =         1.00000000   
+ SETTING II             =         1.00000000                                  
+ SETTING THETA          =     0.00000000D+00                                  
+
+
+ Recomputing integrals since basis changed
+
+
+ Using spherical harmonics
+
+ Library entry C      S 6-31G                selected for orbital group  1
+ Library entry C      P 6-31G                selected for orbital group  1
+ Library entry C      D 6-31G*               selected for orbital group  1
+ Library entry H      S 6-31G                selected for orbital group  2
+ Library entry H      P 6-31G**              selected for orbital group  2
+ Library entry CL     S 6-31G                selected for orbital group  3
+ Library entry CL     P 6-31G                selected for orbital group  3
+ Library entry CL     D 6-31G*               selected for orbital group  3
+ Library entry O      S 6-31G                selected for orbital group  4
+ Library entry O      P 6-31G                selected for orbital group  4
+ Library entry O      D 6-31G*               selected for orbital group  4
+
+
+ PROGRAM * SEWARD (Integral evaluation for generally contracted gaussian basis sets)     Author: Roland Lindh, 1990
+
+ Geometry written to block  1 of record 700
+
+
+ Point group  C1  
+
+
+
+ ATOMIC COORDINATES
+
+ NR  ATOM    CHARGE       X              Y              Z
+
+   1  C       6.00   -2.218645215    0.019169132   -0.999574585
+   2  C       6.00    0.042469805    0.058994998   -2.294697399
+   3  C1      6.00   -2.215261584   -0.049793554    1.619201888
+   4  C2      6.00    0.050647042   -0.078377967    2.928423959
+   5  C       6.00    2.320626923   -0.038547008    1.612105189
+   6  C       6.00    2.315271245    0.030571042   -0.994780645
+   7  H       1.00   -3.975550047    0.042144126   -2.014920393
+   8  H       1.00   -3.983256388   -0.080071739    2.626392360
+   9  H       1.00    4.063570402   -0.061147436    2.651760209
+  10  H       1.00    4.067720753    0.061225387   -2.017770298
+  11  CL     17.00    0.044696414    0.147108564   -5.591776259
+  12  O1      8.00    0.169675880   -0.144621902    5.473468665
+  13  H1      1.00   -1.458909109   -0.165886457    6.194604668
+
+ Bond lengths in Bohr (Angstrom)
+
+  1- 2  2.606064147   1- 3  2.619686530   1- 7  2.029327363   2- 6  2.618438060   2-11  3.298256808
+       ( 1.379069757)       ( 1.386278412)       ( 1.073873794)       ( 1.385617749)       ( 1.745362339)
+
+  3- 4  2.617101717   3- 8  2.034982811   4- 5  2.624326631   4-12  2.548687639   5- 6  2.607807458
+       ( 1.384910588)       ( 1.076866528)       ( 1.388733847)       ( 1.348707416)       ( 1.379992277)
+
+  5- 9  2.029592401   6-10  2.029415383  12-13  1.781229458
+       ( 1.074014046)       ( 1.073920372)       ( 0.942586036)
+
+ Bond angles
+
+  1- 2- 6  120.41265167   1- 2-11  119.85333735   1- 3- 4  120.09852751   1- 3- 8  119.60618077
+
+  2- 1- 3  119.74059978   2- 1- 7  120.15490319   2- 6- 5  119.89038625   2- 6-10  119.94209597
+
+  3- 1- 7  120.10449336   3- 4- 5  119.85570871   3- 4-12  122.70136113   4- 3- 8  120.29528597
+
+  4- 5- 6  120.00211938   4- 5- 9  119.05881976   4-12-13  111.21598955   5- 4-12  117.44292990
+
+  5- 6-10  120.16750735   6- 2-11  119.73400544   6- 5- 9  120.93904953
+
+ NUCLEAR CHARGE:                   66
+ NUMBER OF PRIMITIVE AOS:         283
+ NUMBER OF SYMMETRY AOS:          275
+ NUMBER OF CONTRACTIONS:          141   (  141A   )
+ NUMBER OF INNER CORE ORBITALS:     1   (    1A   )
+ NUMBER OF OUTER CORE ORBITALS:    11   (   11A   )
+ NUMBER OF VALENCE ORBITALS:       37   (   37A   )
+
+
+ NUCLEAR REPULSION ENERGY  396.69151468
+
+
+ Eigenvalues of metric
+
+         1 0.448E-03 0.189E-02 0.406E-02 0.429E-02 0.451E-02 0.530E-02 0.999E-02 0.143E-01
+
+
+ Contracted 2-electron integrals neglected if value below      1.0D-11
+ AO integral compression algorithm  1   Integral accuracy      1.0D-11
+
+     144.966 MB (compressed) written to integral file ( 34.3%)
+
+     Node minimum: 7.602 MB, node maximum: 10.748 MB
+
+
+ NUMBER OF SORTED TWO-ELECTRON INTEGRALS:    3130000.     BUFFER LENGTH:  32768
+ NUMBER OF SEGMENTS:   1  SEGMENT LENGTH:    3130000      RECORD LENGTH: 524288
+
+ Memory used in sort:       3.69 MW
+
+ SORT1 READ    52421962. AND WROTE     2239130. INTEGRALS IN      7 RECORDS. CPU TIME:     0.84 SEC, REAL TIME:     0.90 SEC
+ SORT2 READ    35521919. AND WROTE    50115066. INTEGRALS IN    480 RECORDS. CPU TIME:     0.07 SEC, REAL TIME:     0.12 SEC
+
+ Node minimum:     3127500.  Node maximum:     3136886. integrals
+
+ OPERATOR DM      FOR CENTER  0  COORDINATES:    0.000000    0.000000    0.000000
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      18       30.93       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER   
+
+ PROGRAMS   *        TOTAL       INT
+ CPU TIMES  *         1.70      1.53
+ REAL TIME  *         2.12 SEC
+ DISK USED  *        31.45 MB (local),        1.10 GB (total)
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+
+
+ PROGRAM * RHF-SCF (CLOSED SHELL)       Authors: W. Meyer, H.-J. Werner
+
+
+ NUMBER OF ELECTRONS:      33+   33-    SPACE SYMMETRY=1    SPIN SYMMETRY: Singlet 
+ CONVERGENCE THRESHOLDS:    1.00E-06 (Density)    1.00E-07 (Energy)
+ MAX. NUMBER OF ITERATIONS:       60
+ INTERPOLATION TYPE:            DIIS
+ INTERPOLATION STEPS:              2 (START)      1 (STEP)
+ LEVEL SHIFTS:                  0.00 (CLOSED)  0.00 (OPEN) 
+
+
+
+ Orbital guess generated from atomic densities. Full valence occupancy:   33
+
+ Molecular orbital dump at record        2100.2
+
+ Initial occupancy:  33
+
+ ITERATION    DDIFF          GRAD             ENERGY        2-EL.EN.            DIPOLE MOMENTS         DIIS   ORB.
+    1      0.000D+00      0.000D+00      -764.38201125   1354.143449   -0.90789   -0.02500    0.89775    0    start
+    2      0.000D+00      0.439D-02      -764.45734238   1350.457380   -0.46994   -0.02595    0.96482    1    diag
+    3      0.569D-02      0.176D-02      -764.46767862   1351.385549   -0.59253   -0.02140    0.78319    2    diag
+    4      0.193D-02      0.505D-03      -764.46904149   1351.477093   -0.55297   -0.02267    0.83525    3    diag
+    5      0.933D-03      0.159D-03      -764.46915806   1351.348334   -0.56179   -0.02185    0.80297    4    diag
+    6      0.231D-03      0.474D-04      -764.46917566   1351.361277   -0.55842   -0.02192    0.80603    5    diag
+    7      0.893D-04      0.195D-04      -764.46918002   1351.368062   -0.55861   -0.02182    0.80222    6    diag
+    8      0.424D-04      0.837D-05      -764.46918106   1351.364738   -0.55884   -0.02183    0.80283    7    diag
+    9      0.209D-04      0.368D-05      -764.46918131   1351.364917   -0.55860   -0.02183    0.80260    8    diag
+   10      0.110D-04      0.149D-05      -764.46918135   1351.365591   -0.55876   -0.02183    0.80290    9    orth
+   11      0.494D-05      0.539D-06      -764.46918136   1351.365101   -0.55867   -0.02184    0.80302    9    diag
+   12      0.149D-05      0.205D-06      -764.46918136   1351.365130   -0.55870   -0.02184    0.80304    9    diag
+   13      0.546D-06      0.421D-07      -764.46918136   1351.365158   -0.55870   -0.02184    0.80304    0    orth
+
+ Final occupancy:  33
+
+ !RHF STATE  1.1 Energy              -764.469181356011
+ Nuclear energy                       396.69151468
+ One-electron energy                -1836.84327501
+ Two-electron energy                  675.68257897
+ Virial quotient                       -0.99997559
+ !RHF STATE  1.1 Dipole moment         -0.55869557    -0.02183719     0.80304130
+ Dipole moment /Debye                  -1.41996948    -0.05550097     2.04099371
+
+ Orbital energies:
+
+         1.1          2.1          3.1          4.1          5.1          6.1          7.1          8.1          9.1         10.1
+   -104.816325   -20.600003   -11.311972   -11.292247   -11.254770   -11.252794   -11.244082   -11.238247   -10.554940    -8.023548
+
+        11.1         12.1         13.1         14.1         15.1         16.1         17.1         18.1         19.1         20.1
+     -8.020261    -8.020180    -1.423500    -1.189718    -1.114038    -1.038966    -0.990302    -0.867389    -0.826774    -0.753329
+
+        21.1         22.1         23.1         24.1         25.1         26.1         27.1         28.1         29.1         30.1
+     -0.687796    -0.658204    -0.624717    -0.606984    -0.602532    -0.580596    -0.531089    -0.529144    -0.511117    -0.452343
+
+        31.1         32.1         33.1         34.1         35.1
+     -0.450179    -0.356199    -0.314774     0.126076     0.147236
+
+
+ HOMO     33.1    -0.314774 =      -8.5654eV
+ LUMO     34.1     0.126076 =       3.4307eV
+ LUMO-HOMO         0.440850 =      11.9961eV
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      18       30.93       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER   
+
+              2       4        3.38       700     1000      520     2100   
+                                         GEOM     BASIS   MCVARS     RHF  
+
+ PROGRAMS   *        TOTAL    HF-SCF       INT
+ CPU TIMES  *         2.41      0.71      1.53
+ REAL TIME  *         2.95 SEC
+ DISK USED  *        35.81 MB (local),        1.17 GB (total)
+ SF USED    *         0.08 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+
+
+ PROGRAM * MP2 (Closed-shell)     Authors: C. Hampel, H.-J. Werner, 1991, M. Deegan, P.J. Knowles, 1992
+
+
+ Convergence thresholds:  THRVAR = 1.00D-12  THRDEN = 1.00D-08
+
+ Number of core orbitals:          12 (  12 )
+ Number of closed-shell orbitals:  21 (  21 )
+ Number of external orbitals:     108 ( 108 )
+
+ Molecular orbitals read from record     2100.2  Type=RHF/CANONICAL (state 1.1)
+
+ Number of N-1 electron functions:              21
+ Number of N-2 electron functions:             231
+ Number of singly external CSFs:              2268
+ Number of doubly external CSFs:           2573046
+ Total number of CSFs:                     2575315
+
+ Length of J-op  integral file:               0.00 MB
+ Length of K-op  integral file:               1.37 MB
+
+ Integral transformation finished. Total CPU:   2.39 sec, npass=  1  Memory used:   7.85 MW
+
+ Memory needed for MP2:                      0.09 MW
+
+ SCS-MP2 correlation energy:           -1.044174179303   (PS=  1.200000  PT=  0.333333)
+ SCS-MP2 total energy:               -765.513355535315
+
+
+  Reference energy                   -764.469181356012
+  MP2 singlet pair energy              -0.644607572487
+  MP2 triplet pair energy              -0.434965326939
+  MP2 correlation energy               -1.079572899427
+
+ !MP2 total energy                   -765.548754255439
+
+ KEXT needed  1 integral passes. Memory used:   9.53 MW  CPU time:      1.64 sec
+
+
+ Starting Coupled-perturbed Hartree-Fock, convergence threshold= 1.0D-06
+
+ ITER   MIC  DIIS      VAR         VARC       CPU
+   1     0     1    0.77D-01    0.30D-02     0.02
+   2     7     2    0.57D-03    0.33D-03     0.15
+   3     4     3    0.29D-04    0.63D-05     0.22
+   4     4     4    0.87D-06    0.40D-06     0.29
+
+ CPHF convergence reached in  4 macroiterations and   15 microiterations.   Accuracy: 8.7140D-07
+
+ CPHF solution written to record  4100.2
+
+ Dipole moments (unrelaxed):           -0.55213607    -0.02184698     0.80414309
+ Orbital relaxation contribution:       0.01818494     0.00042395    -0.01614755
+ !MP2 STATE  1.1 Dipole moment         -0.53395112    -0.02142302     0.78799555
+ Dipole moment /Debye                  -1.35707949    -0.05444832     2.00275372
+
+ CPU-time for density and lagrangian:                  0.08 sec
+ CPU-time for coupled-perturbed hartree-fock:          0.29 sec
+
+ MP2 gradient info saved on record         5200.1
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      20      108.54       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700     1380     5200   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP      MP2  
+
+              2       5        4.10       700     1000      520     2100     4100   
+                                         GEOM     BASIS   MCVARS     RHF     CPHF   
+
+ PROGRAMS   *        TOTAL       MP2    HF-SCF       INT
+ CPU TIMES  *         7.23      4.81      0.71      1.53
+ REAL TIME  *        11.69 SEC
+ DISK USED  *       112.92 MB (local),        2.40 GB (total)
+ SF USED    *       202.47 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+
+
+ PROGRAM * OPT (Geometry optimization)     Authors: F. Eckert and H.-J. Werner
+
+
+ BFGS update of hessian
+
+
+********** USER DEFINED INT/FIX/CONSTRAINTS ****************
+
+List of primitive internal coordinates
+
+     N      Name     Type   Natoms   Atom list
+
+     1    D1         Dihedral    4      C1   C2   O1   H1  
+
+List of user defined internal/fixed coordinates and constraints
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    N      Name   Type      Pname     Coeff       Value   Unit
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    1    Cns001    Con     D1         1.000     0.00000   Degree
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+******************************************************************
+
+
+
+ *** Long output written to logfile /scratch/kaeser/molprojob_698436/relaxed_scan_clphoh_meta.log ***
+
+
+ Geometry optimization using default procedure for command MP2
+
+ Geometry written to block  1 of record 700
+
+ SLAPAF optimizer by R. Lindh and Ignacio F. Galvan entered
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =      0.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    -0.0568   / Degree   -0.000992 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001     -0.000992  0.000000
+
+
+ ITER.   ENERGY(OLD)    ENERGY(NEW)      DE          GRADMAX     GRADNORM    GRADRMS     STEPMAX     STEPLEN     STEPRMS   CPU-time
+   1  -765.54875426  -765.55055814    -0.00180388  0.02777559  0.04528813  0.00725190  0.03363711  0.07966069  0.00204258     11.27
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =      0.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=     0.0000   / Degree    0.000000 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.000000  0.000000
+
+   2  -765.55055814  -765.55085700    -0.00029886  0.00785047  0.01639172  0.00262478  0.02056675  0.04475443  0.00114755     22.86
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =      0.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=     0.0000   / Degree    0.000000 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.000000  0.000000
+
+   3  -765.55085700  -765.55086491    -0.00000791  0.00217566  0.00356904  0.00057150  0.00416223  0.00666841  0.00017098     34.57
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =      0.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    -0.0000   / Degree   -0.000000 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001     -0.000000  0.000000
+
+   4  -765.55086491  -765.55086605    -0.00000114  0.00081774  0.00127314  0.00020387  0.00291352  0.00360215  0.00009236     45.65
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =      0.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    -0.0000   / Degree   -0.000000 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001     -0.000000  0.000000
+
+ Geometry section
+ Geometry section
+   5  -765.55086605  -765.55086605    -0.00000000  0.00012868  0.00017769  0.00003141  0.00028015  0.00047125  0.00001208     56.73
+
+ END OF GEOMETRY OPTIMIZATION.
+
+ Current geometry (xyz format, in Angstrom)
+
+   13
+ MP2/6-31G(D,P)  ENERGY=-765.55086605
+ C         -1.1862901914        0.0104913128       -0.5362444045
+ C          0.0237744555        0.0315598591       -1.2281812989
+ C         -1.1822461448       -0.0261641191        0.8595265763
+ C          0.0289671663       -0.0414814876        1.5569253144
+ C          1.2388854087       -0.0202866051        0.8556345000
+ C          1.2376300660        0.0164591059       -0.5365398519
+ H         -2.1221240519        0.0226385599       -1.0794730055
+ H         -2.1235233792       -0.0424227348        1.3988294214
+ H          2.1665773507       -0.0325321487        1.4127884389
+ H          2.1712222233        0.0329682499       -1.0835547162
+ Cl         0.0222900320        0.0775896848       -2.9680080875
+ O          0.1049951567       -0.0771984053        2.9268017256
+ H         -0.7912990865       -0.0888013690        3.2859237511
+
+ **********************************************************************************************************************************
+
+ Geometry written to block  1 of record 700
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      20      108.54       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700     1380     5200   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP      MP2  
+
+              2       7        4.22       700     1000      520     2100     4100     9001      520(1)
+                                         GEOM     BASIS   MCVARS     RHF     CPHF    DEN_MP2  MCVARS    
+
+ PROGRAMS   *        TOTAL      OPTG       MP2    HF-SCF       INT
+ CPU TIMES  *        63.96     56.74      4.81      0.71      1.53
+ REAL TIME  *        84.23 SEC
+ DISK USED  *       115.54 MB (local),        2.44 GB (total)
+ SF USED    *       203.91 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+ SETTING EMP2(1)        =      -765.55086605  AU                              
+ SETTING THLIST(1)      =     0.00000000D+00                                  
+
+ DO I                   =         2.00000000   
+ SETTING II             =         2.00000000                                  
+ SETTING THETA          =        15.00000000                                  
+
+
+ PROGRAM * RHF-SCF (CLOSED SHELL)       Authors: W. Meyer, H.-J. Werner
+
+
+ NUMBER OF ELECTRONS:      33+   33-    SPACE SYMMETRY=1    SPIN SYMMETRY: Singlet 
+ CONVERGENCE THRESHOLDS:    1.00E-07 (Density)    1.00E-07 (Energy)
+ MAX. NUMBER OF ITERATIONS:       60
+ INTERPOLATION TYPE:            DIIS
+ INTERPOLATION STEPS:              2 (START)      1 (STEP)
+ LEVEL SHIFTS:                  0.00 (CLOSED)  0.00 (OPEN) 
+
+
+
+ Molecular orbitals read from record     2100.2  Type=RHF/CANONICAL (state 1.1)
+
+ Molecular orbital dump at record        2100.2
+
+ ITERATION    DDIFF          GRAD             ENERGY        2-EL.EN.            DIPOLE MOMENTS         DIIS   ORB.
+    1      0.000D+00      0.000D+00      -764.46691135   1345.772787   -0.57018   -0.02029    0.72253    0    start
+    2      0.000D+00      0.153D-07      -764.46691135   1345.772793   -0.57019   -0.02029    0.72253    0    orth
+
+ Final occupancy:  33
+
+ !RHF STATE  1.1 Energy              -764.466911349424
+ Nuclear energy                       393.84571218
+ One-electron energy                -1831.19901986
+ Two-electron energy                  672.88639633
+ Virial quotient                       -1.00042003
+ !RHF STATE  1.1 Dipole moment         -0.57018599    -0.02028741     0.72252552
+ Dipole moment /Debye                  -1.44917330    -0.05156207     1.83635642
+
+ Orbital energies:
+
+         1.1          2.1          3.1          4.1          5.1          6.1          7.1          8.1          9.1         10.1
+   -104.818043   -20.602321   -11.316169   -11.296991   -11.260277   -11.257944   -11.250608   -11.243840   -10.556727    -8.025346
+
+        11.1         12.1         13.1         14.1         15.1         16.1         17.1         18.1         19.1         20.1
+     -8.022034    -8.021957    -1.409334    -1.186002    -1.112624    -1.035186    -0.986132    -0.862637    -0.820524    -0.742041
+
+        21.1         22.1         23.1         24.1         25.1         26.1         27.1         28.1         29.1         30.1
+     -0.683698    -0.657024    -0.621228    -0.605177    -0.595267    -0.579987    -0.529637    -0.529505    -0.512078    -0.452124
+
+        31.1         32.1         33.1         34.1         35.1
+     -0.451076    -0.354853    -0.314722     0.122491     0.142008
+
+
+ HOMO     33.1    -0.314722 =      -8.5640eV
+ LUMO     34.1     0.122491 =       3.3332eV
+ LUMO-HOMO         0.437214 =      11.8972eV
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      20      108.54       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700     1380     5200   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP      MP2  
+
+              2       7        4.22       700     1000      520     2100     4100     9001      520(1)
+                                         GEOM     BASIS   MCVARS     RHF     CPHF    DEN_MP2  MCVARS    
+
+ PROGRAMS   *        TOTAL    HF-SCF      OPTG       MP2    HF-SCF       INT
+ CPU TIMES  *        64.08      0.12     56.74      4.81      0.71      1.53
+ REAL TIME  *        84.37 SEC
+ DISK USED  *       115.54 MB (local),        2.44 GB (total)
+ SF USED    *       203.91 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+
+
+ PROGRAM * MP2 (Closed-shell)     Authors: C. Hampel, H.-J. Werner, 1991, M. Deegan, P.J. Knowles, 1992
+
+
+ Convergence thresholds:  THRVAR = 1.00D-12  THRDEN = 1.00D-08
+
+ Number of core orbitals:          12 (  12 )
+ Number of closed-shell orbitals:  21 (  21 )
+ Number of external orbitals:     108 ( 108 )
+
+ Molecular orbitals read from record     2100.2  Type=RHF/CANONICAL (state 1.1)
+
+ Number of N-1 electron functions:              21
+ Number of N-2 electron functions:             231
+ Number of singly external CSFs:              2268
+ Number of doubly external CSFs:           2573046
+ Total number of CSFs:                     2575315
+
+ Length of J-op  integral file:               0.00 MB
+ Length of K-op  integral file:               1.37 MB
+
+ Integral transformation finished. Total CPU:   2.57 sec, npass=  1  Memory used:   7.85 MW
+
+ Memory needed for MP2:                      0.09 MW
+
+ SCS-MP2 correlation energy:           -1.048791949853   (PS=  1.200000  PT=  0.333333)
+ SCS-MP2 total energy:               -765.515703299277
+
+
+  Reference energy                   -764.466911349424
+  MP2 singlet pair energy              -0.647880988417
+  MP2 triplet pair energy              -0.436073727460
+  MP2 correlation energy               -1.083954715877
+
+ !MP2 total energy                   -765.550866065301
+
+ KEXT needed  1 integral passes. Memory used:   9.53 MW  CPU time:      1.59 sec
+
+
+ Starting Coupled-perturbed Hartree-Fock, convergence threshold= 1.0D-06
+
+ ITER   MIC  DIIS      VAR         VARC       CPU
+   1     0     1    0.78D-01    0.30D-02     0.03
+   2     7     2    0.57D-03    0.33D-03     0.16
+   3     4     3    0.29D-04    0.62D-05     0.23
+   4     4     4    0.86D-06    0.39D-06     0.29
+
+ CPHF convergence reached in  4 macroiterations and   15 microiterations.   Accuracy: 8.6270D-07
+
+ CPHF solution written to record  4100.2
+
+ Dipole moments (unrelaxed):           -0.56238865    -0.02032015     0.72459771
+ Orbital relaxation contribution:       0.02055095     0.00029123    -0.01025766
+ !MP2 STATE  1.1 Dipole moment         -0.54183770    -0.02002891     0.71434005
+ Dipole moment /Debye                  -1.37712387    -0.05090508     1.81555237
+
+ CPU-time for density and lagrangian:                  0.08 sec
+ CPU-time for coupled-perturbed hartree-fock:          0.29 sec
+
+ MP2 gradient info saved on record         5201.1
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      21      130.59       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700     1380     5200   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP      MP2  
+                                         5201   
+                                          MP2  
+
+              2       7        4.22       700     1000      520     2100     4100     9001      520(1)
+                                         GEOM     BASIS   MCVARS     RHF     CPHF    DEN_MP2  MCVARS    
+
+ PROGRAMS   *        TOTAL       MP2    HF-SCF      OPTG       MP2    HF-SCF       INT
+ CPU TIMES  *        68.80      4.72      0.12     56.74      4.81      0.71      1.53
+ REAL TIME  *        89.75 SEC
+ DISK USED  *       135.09 MB (local),        2.76 GB (total)
+ SF USED    *       203.91 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+
+
+ PROGRAM * OPT (Geometry optimization)     Authors: F. Eckert and H.-J. Werner
+
+
+ BFGS update of hessian
+
+
+********** USER DEFINED INT/FIX/CONSTRAINTS ****************
+
+List of primitive internal coordinates
+
+     N      Name     Type   Natoms   Atom list
+
+     1    D1         Dihedral    4      C1   C2   O1   H1  
+
+List of user defined internal/fixed coordinates and constraints
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    N      Name   Type      Pname     Coeff       Value   Unit
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    1    Cns001    Con     D1         1.000    15.00000   Degree
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+******************************************************************
+
+
+
+ Geometry optimization using default procedure for command MP2
+
+ Geometry written to block  1 of record 700
+
+ SLAPAF optimizer by R. Lindh and Ignacio F. Galvan entered
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     15.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    -0.0000   / Degree   -0.000000 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001     -0.000000  0.261799
+
+
+ ITER.   ENERGY(OLD)    ENERGY(NEW)      DE          GRADMAX     GRADNORM    GRADRMS     STEPMAX     STEPLEN     STEPRMS   CPU-time
+   1  -765.55086607  -765.55057227     0.00029379  0.00006863  0.00010024  0.00001605  0.06377719  0.09090261  0.00233084     10.11
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     15.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=     6.6191   / Degree    0.115525 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.115525  0.261799
+
+   2  -765.55057227  -765.55034920     0.00022308  0.00723784  0.00831956  0.00133220  0.10567831  0.13174090  0.00337797     21.13
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     15.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    13.2468   / Degree    0.231201 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.231201  0.261799
+
+   3  -765.55034920  -765.55053521    -0.00018601  0.00828875  0.00994916  0.00159314  0.12073341  0.16328173  0.00418671     32.10
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     15.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    14.9950   / Degree    0.261712 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.261712  0.261799
+
+   4  -765.55053521  -765.55054177    -0.00000656  0.00241711  0.00391972  0.00062766  0.01002807  0.01806827  0.00046329     42.62
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     15.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    15.0000   / Degree    0.261799 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.261799  0.261799
+
+   5  -765.55054177  -765.55054925    -0.00000748  0.00223661  0.00353906  0.00056670  0.01265817  0.02170919  0.00055665     54.96
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     15.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    15.0000   / Degree    0.261799 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.261799  0.261799
+
+   6  -765.55054925  -765.55055192    -0.00000268  0.00215840  0.00337768  0.00054086  0.00364456  0.00681488  0.00017474     65.48
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     15.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    15.0000   / Degree    0.261799 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.261799  0.261799
+
+   7  -765.55055192  -765.55055367    -0.00000175  0.00220606  0.00345602  0.00055341  0.00515305  0.01040258  0.00026673     76.20
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     15.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    15.0000   / Degree    0.261799 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.261799  0.261799
+
+   8  -765.55055367  -765.55055424    -0.00000057  0.00222498  0.00344025  0.00055088  0.00428538  0.00641673  0.00016453     86.60
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     15.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    15.0000   / Degree    0.261799 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.261799  0.261799
+
+ Geometry section
+ Geometry section
+   9  -765.55055424  -765.55055453    -0.00000029  0.00009615  0.00018139  0.00003207  0.00315830  0.00447842  0.00011483     99.20
+
+ END OF GEOMETRY OPTIMIZATION.
+
+ Current geometry (xyz format, in Angstrom)
+
+   13
+ MP2/6-31G(D,P)  ENERGY=-765.55055453
+ C         -1.1871164893        0.0128624191       -0.5375444962
+ C          0.0239058880        0.0239310216       -1.2284453599
+ C         -1.1843627525        0.0015060970        0.8585127164
+ C          0.0262737910       -0.0222385037        1.5569140072
+ C          1.2367288728       -0.0055490214        0.8569501219
+ C          1.2370791791        0.0148169826       -0.5357996522
+ H         -2.1222412897        0.0249411928       -1.0820184197
+ H         -2.1255732609        0.0050471513        1.3979221659
+ H          2.1637214571       -0.0181595853        1.4152586870
+ H          2.1711319366        0.0225971463       -1.0822366123
+ Cl         0.0239858008        0.0440927385       -2.9686065566
+ O          0.0984831115       -0.0138116177        2.9285168893
+ H         -0.7731572392       -0.2272161185        3.2850048723
+
+ **********************************************************************************************************************************
+
+ Geometry written to block  1 of record 700
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      20      108.54       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700     1380     5200   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP      MP2  
+
+              2       7        4.22       700     1000      520     2100     4100     9001      520(1)
+                                         GEOM     BASIS   MCVARS     RHF     CPHF    DEN_MP2  MCVARS    
+
+ PROGRAMS   *        TOTAL      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF       INT
+ CPU TIMES  *       168.01     99.20      4.72      0.12     56.74      4.81      0.71      1.53
+ REAL TIME  *       219.47 SEC
+ DISK USED  *       137.37 MB (local),        2.81 GB (total)
+ SF USED    *       204.22 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+ SETTING EMP2(2)        =      -765.55055453  AU                              
+ SETTING THLIST(2)      =        15.00000000                                  
+
+ DO I                   =         3.00000000   
+ SETTING II             =         3.00000000                                  
+ SETTING THETA          =        30.00000000                                  
+
+
+ PROGRAM * RHF-SCF (CLOSED SHELL)       Authors: W. Meyer, H.-J. Werner
+
+
+ NUMBER OF ELECTRONS:      33+   33-    SPACE SYMMETRY=1    SPIN SYMMETRY: Singlet 
+ CONVERGENCE THRESHOLDS:    1.00E-07 (Density)    1.00E-07 (Energy)
+ MAX. NUMBER OF ITERATIONS:       60
+ INTERPOLATION TYPE:            DIIS
+ INTERPOLATION STEPS:              2 (START)      1 (STEP)
+ LEVEL SHIFTS:                  0.00 (CLOSED)  0.00 (OPEN) 
+
+
+
+ Molecular orbitals read from record     2100.2  Type=RHF/CANONICAL (state 1.1)
+
+ Molecular orbital dump at record        2100.2
+
+ ITERATION    DDIFF          GRAD             ENERGY        2-EL.EN.            DIPOLE MOMENTS         DIIS   ORB.
+    1      0.000D+00      0.000D+00      -764.46661510   1345.742907   -0.55603   -0.16031    0.71292    0    start
+    2      0.000D+00      0.430D-08      -764.46661510   1345.742906   -0.55603   -0.16031    0.71292    0    orth
+
+ Final occupancy:  33
+
+ !RHF STATE  1.1 Energy              -764.466615098517
+ Nuclear energy                       393.82282676
+ One-electron energy                -1831.16089485
+ Two-electron energy                  672.87145299
+ Virial quotient                       -1.00041903
+ !RHF STATE  1.1 Dipole moment         -0.55603143    -0.16031488     0.71291636
+ Dipole moment /Debye                  -1.41319837    -0.40745310     1.81193397
+
+ Orbital energies:
+
+         1.1          2.1          3.1          4.1          5.1          6.1          7.1          8.1          9.1         10.1
+   -104.818188   -20.601471   -11.315575   -11.297328   -11.260128   -11.257868   -11.250558   -11.244014   -10.556880    -8.025499
+
+        11.1         12.1         13.1         14.1         15.1         16.1         17.1         18.1         19.1         20.1
+     -8.022184    -8.022109    -1.408271    -1.186104    -1.112670    -1.035114    -0.986065    -0.862125    -0.820401    -0.741619
+
+        21.1         22.1         23.1         24.1         25.1         26.1         27.1         28.1         29.1         30.1
+     -0.683162    -0.657065    -0.623105    -0.605103    -0.596862    -0.575564    -0.530482    -0.529057    -0.510792    -0.452370
+
+        31.1         32.1         33.1         34.1         35.1
+     -0.451193    -0.354718    -0.315351     0.122298     0.141279
+
+
+ HOMO     33.1    -0.315351 =      -8.5811eV
+ LUMO     34.1     0.122298 =       3.3279eV
+ LUMO-HOMO         0.437649 =      11.9090eV
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      20      108.54       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700     1380     5200   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP      MP2  
+
+              2       7        4.22       700     1000      520     2100     4100     9001      520(1)
+                                         GEOM     BASIS   MCVARS     RHF     CPHF    DEN_MP2  MCVARS    
+
+ PROGRAMS   *        TOTAL    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF       INT
+ CPU TIMES  *       168.14      0.12     99.20      4.72      0.12     56.74      4.81      0.71      1.53
+ REAL TIME  *       219.62 SEC
+ DISK USED  *       137.37 MB (local),        2.81 GB (total)
+ SF USED    *       204.22 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+
+
+ PROGRAM * MP2 (Closed-shell)     Authors: C. Hampel, H.-J. Werner, 1991, M. Deegan, P.J. Knowles, 1992
+
+
+ Convergence thresholds:  THRVAR = 1.00D-12  THRDEN = 1.00D-08
+
+ Number of core orbitals:          12 (  12 )
+ Number of closed-shell orbitals:  21 (  21 )
+ Number of external orbitals:     108 ( 108 )
+
+ Molecular orbitals read from record     2100.2  Type=RHF/CANONICAL (state 1.1)
+
+ Number of N-1 electron functions:              21
+ Number of N-2 electron functions:             231
+ Number of singly external CSFs:              2268
+ Number of doubly external CSFs:           2573046
+ Total number of CSFs:                     2575315
+
+ Length of J-op  integral file:               0.00 MB
+ Length of K-op  integral file:               1.37 MB
+
+ Integral transformation finished. Total CPU:   2.73 sec, npass=  1  Memory used:   7.85 MW
+
+ Memory needed for MP2:                      0.09 MW
+
+ SCS-MP2 correlation energy:           -1.048779187895   (PS=  1.200000  PT=  0.333333)
+ SCS-MP2 total energy:               -765.515394286414
+
+
+  Reference energy                   -764.466615098519
+  MP2 singlet pair energy              -0.647875368867
+  MP2 triplet pair energy              -0.436064054874
+  MP2 correlation energy               -1.083939423741
+
+ !MP2 total energy                   -765.550554522260
+
+ KEXT needed  1 integral passes. Memory used:   9.53 MW  CPU time:      1.72 sec
+
+
+ Starting Coupled-perturbed Hartree-Fock, convergence threshold= 1.0D-06
+
+ ITER   MIC  DIIS      VAR         VARC       CPU
+   1     0     1    0.78D-01    0.30D-02     0.03
+   2     7     2    0.57D-03    0.32D-03     0.17
+   3     4     3    0.29D-04    0.62D-05     0.23
+   4     4     4    0.86D-06    0.39D-06     0.30
+
+ CPHF convergence reached in  4 macroiterations and   15 microiterations.   Accuracy: 8.6060D-07
+
+ CPHF solution written to record  4100.2
+
+ Dipole moments (unrelaxed):           -0.54844517    -0.15813657     0.71482669
+ Orbital relaxation contribution:       0.01982003     0.00775321    -0.01157027
+ !MP2 STATE  1.1 Dipole moment         -0.52862514    -0.15038336     0.70325642
+ Dipole moment /Debye                  -1.34354308    -0.38221133     1.78738245
+
+ CPU-time for density and lagrangian:                  0.08 sec
+ CPU-time for coupled-perturbed hartree-fock:          0.31 sec
+
+ MP2 gradient info saved on record         5201.1
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      21      130.59       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700     1380     5200   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP      MP2  
+                                         5201   
+                                          MP2  
+
+              2       7        4.22       700     1000      520     2100     4100     9001      520(1)
+                                         GEOM     BASIS   MCVARS     RHF     CPHF    DEN_MP2  MCVARS    
+
+ PROGRAMS   *        TOTAL       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF       INT
+ CPU TIMES  *       173.32      5.18      0.12     99.20      4.72      0.12     56.74      4.81      0.71      1.53
+ REAL TIME  *       226.31 SEC
+ DISK USED  *       137.37 MB (local),        2.81 GB (total)
+ SF USED    *       204.22 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+
+
+ PROGRAM * OPT (Geometry optimization)     Authors: F. Eckert and H.-J. Werner
+
+
+ BFGS update of hessian
+
+
+********** USER DEFINED INT/FIX/CONSTRAINTS ****************
+
+List of primitive internal coordinates
+
+     N      Name     Type   Natoms   Atom list
+
+     1    D1         Dihedral    4      C1   C2   O1   H1  
+
+List of user defined internal/fixed coordinates and constraints
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    N      Name   Type      Pname     Coeff       Value   Unit
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    1    Cns001    Con     D1         1.000    30.00000   Degree
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+******************************************************************
+
+
+
+ Geometry optimization using default procedure for command MP2
+
+ Geometry written to block  1 of record 700
+
+ SLAPAF optimizer by R. Lindh and Ignacio F. Galvan entered
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     30.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    15.0000   / Degree    0.261799 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.261799  0.523599
+
+
+ ITER.   ENERGY(OLD)    ENERGY(NEW)      DE          GRADMAX     GRADNORM    GRADRMS     STEPMAX     STEPLEN     STEPRMS   CPU-time
+   1  -765.55055452  -765.54998423     0.00057029  0.00219217  0.00335832  0.00053776  0.06161096  0.09573331  0.00245470     12.86
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     30.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    21.6156   / Degree    0.377263 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.377263  0.523599
+
+   2  -765.54998423  -765.54947544     0.00050879  0.00927842  0.01134689  0.00181696  0.09280389  0.13015474  0.00333730     24.76
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     30.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    28.2514   / Degree    0.493080 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.493080  0.523599
+
+   3  -765.54947544  -765.54964795    -0.00017251  0.01057561  0.01325075  0.00212182  0.11811199  0.16522218  0.00423647     36.81
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     30.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    29.9910   / Degree    0.523442 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.523442  0.523599
+
+   4  -765.54964795  -765.54965967    -0.00001172  0.00383209  0.00673351  0.00107822  0.01744659  0.02952013  0.00075693     48.73
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     30.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    30.0000   / Degree    0.523599 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.523599  0.523599
+
+   5  -765.54965967  -765.54966539    -0.00000572  0.00366739  0.00609915  0.00097665  0.00868721  0.01871761  0.00047994     60.25
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     30.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    30.0000   / Degree    0.523599 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.523599  0.523599
+
+   6  -765.54966539  -765.54966799    -0.00000260  0.00375207  0.00606665  0.00097144  0.00302932  0.00658669  0.00016889     71.56
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     30.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    30.0000   / Degree    0.523599 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.523599  0.523599
+
+   7  -765.54966799  -765.54967008    -0.00000209  0.00382699  0.00619898  0.00099263  0.00380478  0.00852185  0.00021851     82.90
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     30.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    30.0000   / Degree    0.523599 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.523599  0.523599
+
+   8  -765.54967008  -765.54967101    -0.00000093  0.00380050  0.00621002  0.00099440  0.00407665  0.00651382  0.00016702     92.64
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     30.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    30.0000   / Degree    0.523599 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.523599  0.523599
+
+ Geometry section
+ Geometry section
+   9  -765.54967101  -765.54967127    -0.00000027  0.00007722  0.00020364  0.00003600  0.00244700  0.00339899  0.00008715    107.15
+
+ END OF GEOMETRY OPTIMIZATION.
+
+ Current geometry (xyz format, in Angstrom)
+
+   13
+ MP2/6-31G(D,P)  ENERGY=-765.54967127
+ C         -1.1896216689        0.0157496876       -0.5415578287
+ C          0.0241947860        0.0159364497       -1.2287531105
+ C         -1.1905895956        0.0282794718        0.8541293368
+ C          0.0182144298       -0.0023917601        1.5559895979
+ C          1.2303766541        0.0077816293        0.8602371446
+ C          1.2353833135        0.0117484046       -0.5333031169
+ H         -2.1226126548        0.0289798189       -1.0896777006
+ H         -2.1315859411        0.0499864908        1.3928042153
+ H          2.1553692918       -0.0034375288        1.4218549384
+ H          2.1707917392        0.0123399642       -1.0774698141
+ Cl         0.0289818951        0.0114421576       -2.9689653795
+ O          0.0793612329        0.0467088349        2.9304261656
+ H         -0.7194044766       -0.3603037178        3.2887139148
+
+ **********************************************************************************************************************************
+
+ Geometry written to block  1 of record 700
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      20      108.54       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700     1380     5200   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP      MP2  
+
+              2       7        4.22       700     1000      520     2100     4100     9001      520(1)
+                                         GEOM     BASIS   MCVARS     RHF     CPHF    DEN_MP2  MCVARS    
+
+ PROGRAMS   *        TOTAL      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF       INT
+ CPU TIMES  *       280.48    107.15      5.18      0.12     99.20      4.72      0.12     56.74      4.81      0.71      1.53
+ REAL TIME  *       359.05 SEC
+ DISK USED  *       137.37 MB (local),        2.81 GB (total)
+ SF USED    *       204.22 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+ SETTING EMP2(3)        =      -765.54967127  AU                              
+ SETTING THLIST(3)      =        30.00000000                                  
+
+ DO I                   =         4.00000000   
+ SETTING II             =         4.00000000                                  
+ SETTING THETA          =        45.00000000                                  
+
+
+ PROGRAM * RHF-SCF (CLOSED SHELL)       Authors: W. Meyer, H.-J. Werner
+
+
+ NUMBER OF ELECTRONS:      33+   33-    SPACE SYMMETRY=1    SPIN SYMMETRY: Singlet 
+ CONVERGENCE THRESHOLDS:    1.00E-07 (Density)    1.00E-07 (Energy)
+ MAX. NUMBER OF ITERATIONS:       60
+ INTERPOLATION TYPE:            DIIS
+ INTERPOLATION STEPS:              2 (START)      1 (STEP)
+ LEVEL SHIFTS:                  0.00 (CLOSED)  0.00 (OPEN) 
+
+
+
+ Molecular orbitals read from record     2100.2  Type=RHF/CANONICAL (state 1.1)
+
+ Molecular orbital dump at record        2100.2
+
+ ITERATION    DDIFF          GRAD             ENERGY        2-EL.EN.            DIPOLE MOMENTS         DIIS   ORB.
+    1      0.000D+00      0.000D+00      -764.46581172   1345.613591   -0.51361   -0.29338    0.69272    0    start
+    2      0.000D+00      0.471D-08      -764.46581172   1345.613590   -0.51361   -0.29338    0.69272    0    orth
+
+ Final occupancy:  33
+
+ !RHF STATE  1.1 Energy              -764.465811715986
+ Nuclear energy                       393.73674789
+ One-electron energy                -1831.00935437
+ Two-electron energy                  672.80679477
+ Virial quotient                       -1.00041763
+ !RHF STATE  1.1 Dipole moment         -0.51361211    -0.29337762     0.69271812
+ Dipole moment /Debye                  -1.30538627    -0.74564270     1.76059853
+
+ Orbital energies:
+
+         1.1          2.1          3.1          4.1          5.1          6.1          7.1          8.1          9.1         10.1
+   -104.818602   -20.599110   -11.313936   -11.298336   -11.259735   -11.257677   -11.250460   -11.244558   -10.557305    -8.025923
+
+        11.1         12.1         13.1         14.1         15.1         16.1         17.1         18.1         19.1         20.1
+     -8.022605    -8.022534    -1.405295    -1.186345    -1.112761    -1.034942    -0.985901    -0.860764    -0.820058    -0.740387
+
+        21.1         22.1         23.1         24.1         25.1         26.1         27.1         28.1         29.1         30.1
+     -0.681610    -0.657279    -0.627845    -0.604932    -0.598231    -0.566957    -0.531822    -0.528687    -0.507019    -0.453155
+
+        31.1         32.1         33.1         34.1         35.1
+     -0.451528    -0.354366    -0.317218     0.121896     0.139353
+
+
+ HOMO     33.1    -0.317218 =      -8.6319eV
+ LUMO     34.1     0.121896 =       3.3170eV
+ LUMO-HOMO         0.439113 =      11.9489eV
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      20      108.54       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700     1380     5200   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP      MP2  
+
+              2       7        4.22       700     1000      520     2100     4100     9001      520(1)
+                                         GEOM     BASIS   MCVARS     RHF     CPHF    DEN_MP2  MCVARS    
+
+ PROGRAMS   *        TOTAL    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF
+ CPU TIMES  *       280.62      0.13    107.15      5.18      0.12     99.20      4.72      0.12     56.74      4.81      0.71
+ REAL TIME  *       359.21 SEC
+ DISK USED  *       137.37 MB (local),        2.81 GB (total)
+ SF USED    *       204.22 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+
+
+ PROGRAM * MP2 (Closed-shell)     Authors: C. Hampel, H.-J. Werner, 1991, M. Deegan, P.J. Knowles, 1992
+
+
+ Convergence thresholds:  THRVAR = 1.00D-12  THRDEN = 1.00D-08
+
+ Number of core orbitals:          12 (  12 )
+ Number of closed-shell orbitals:  21 (  21 )
+ Number of external orbitals:     108 ( 108 )
+
+ Molecular orbitals read from record     2100.2  Type=RHF/CANONICAL (state 1.1)
+
+ Number of N-1 electron functions:              21
+ Number of N-2 electron functions:             231
+ Number of singly external CSFs:              2268
+ Number of doubly external CSFs:           2573046
+ Total number of CSFs:                     2575315
+
+ Length of J-op  integral file:               0.00 MB
+ Length of K-op  integral file:               1.37 MB
+
+ Integral transformation finished. Total CPU:   2.70 sec, npass=  1  Memory used:   7.85 MW
+
+ Memory needed for MP2:                      0.09 MW
+
+ SCS-MP2 correlation energy:           -1.048716962267   (PS=  1.200000  PT=  0.333333)
+ SCS-MP2 total energy:               -765.514528678249
+
+
+  Reference energy                   -764.465811715982
+  MP2 singlet pair energy              -0.647853680569
+  MP2 triplet pair energy              -0.436005876831
+  MP2 correlation energy               -1.083859557400
+
+ !MP2 total energy                   -765.549671273382
+
+ KEXT needed  1 integral passes. Memory used:   9.53 MW  CPU time:      1.56 sec
+
+
+ Starting Coupled-perturbed Hartree-Fock, convergence threshold= 1.0D-06
+
+ ITER   MIC  DIIS      VAR         VARC       CPU
+   1     0     1    0.77D-01    0.30D-02     0.02
+   2     7     2    0.57D-03    0.32D-03     0.15
+   3     4     3    0.28D-04    0.62D-05     0.22
+   4     4     4    0.86D-06    0.38D-06     0.28
+
+ CPHF convergence reached in  4 macroiterations and   15 microiterations.   Accuracy: 8.5555D-07
+
+ CPHF solution written to record  4100.2
+
+ Dipole moments (unrelaxed):           -0.50668285    -0.28920386     0.69407731
+ Orbital relaxation contribution:       0.01774741     0.01387845    -0.01579507
+ !MP2 STATE  1.1 Dipole moment         -0.48893544    -0.27532541     0.67828224
+ Dipole moment /Debye                  -1.24266854    -0.69976156     1.72390858
+
+ CPU-time for density and lagrangian:                  0.09 sec
+ CPU-time for coupled-perturbed hartree-fock:          0.28 sec
+
+ MP2 gradient info saved on record         5201.1
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      21      130.59       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700     1380     5200   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP      MP2  
+                                         5201   
+                                          MP2  
+
+              2       7        4.22       700     1000      520     2100     4100     9001      520(1)
+                                         GEOM     BASIS   MCVARS     RHF     CPHF    DEN_MP2  MCVARS    
+
+ PROGRAMS   *        TOTAL       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2
+ CPU TIMES  *       285.97      5.34      0.13    107.15      5.18      0.12     99.20      4.72      0.12     56.74      4.81
+ REAL TIME  *       367.43 SEC
+ DISK USED  *       137.37 MB (local),        2.81 GB (total)
+ SF USED    *       204.22 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+
+
+ PROGRAM * OPT (Geometry optimization)     Authors: F. Eckert and H.-J. Werner
+
+
+ BFGS update of hessian
+
+
+********** USER DEFINED INT/FIX/CONSTRAINTS ****************
+
+List of primitive internal coordinates
+
+     N      Name     Type   Natoms   Atom list
+
+     1    D1         Dihedral    4      C1   C2   O1   H1  
+
+List of user defined internal/fixed coordinates and constraints
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    N      Name   Type      Pname     Coeff       Value   Unit
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    1    Cns001    Con     D1         1.000    45.00000   Degree
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+******************************************************************
+
+
+
+ Geometry optimization using default procedure for command MP2
+
+ Geometry written to block  1 of record 700
+
+ SLAPAF optimizer by R. Lindh and Ignacio F. Galvan entered
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     45.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    30.0000   / Degree    0.523599 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.523599  0.785398
+
+
+ ITER.   ENERGY(OLD)    ENERGY(NEW)      DE          GRADMAX     GRADNORM    GRADRMS     STEPMAX     STEPLEN     STEPRMS   CPU-time
+   1  -765.54967127  -765.54892279     0.00074848  0.00372568  0.00608385  0.00097420  0.05608363  0.10446613  0.00267862     12.50
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     45.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    36.6163   / Degree    0.639075 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.639075  0.785398
+
+   2  -765.54892279  -765.54824899     0.00067380  0.01015092  0.01303174  0.00208675  0.08202529  0.14046480  0.00360166     24.98
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     45.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    43.2585   / Degree    0.755003 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.755003  0.785398
+
+   3  -765.54824899  -765.54835893    -0.00010993  0.01099749  0.01425796  0.00228310  0.10400865  0.15562354  0.00399035     35.41
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     45.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    44.9891   / Degree    0.785208 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.785208  0.785398
+
+   4  -765.54835893  -765.54837555    -0.00001662  0.00436055  0.00787631  0.00126122  0.01865962  0.03285246  0.00084237     46.98
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     45.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    45.0000   / Degree    0.785398 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.785398  0.785398
+
+   5  -765.54837555  -765.54838350    -0.00000795  0.00379138  0.00729160  0.00116759  0.01229252  0.02342778  0.00060071     57.84
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     45.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    45.0000   / Degree    0.785398 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.785398  0.785398
+
+   6  -765.54838350  -765.54838550    -0.00000200  0.00414873  0.00738225  0.00118211  0.00235445  0.00507447  0.00013011     68.84
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     45.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    45.0000   / Degree    0.785398 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.785398  0.785398
+
+   7  -765.54838550  -765.54838784    -0.00000234  0.00424414  0.00749531  0.00120021  0.00474056  0.00943664  0.00024197     79.96
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     45.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    45.0000   / Degree    0.785398 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.785398  0.785398
+
+   8  -765.54838784  -765.54838885    -0.00000101  0.00430112  0.00748924  0.00119924  0.00437148  0.00650720  0.00016685     91.82
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     45.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    45.0000   / Degree    0.785398 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.785398  0.785398
+
+ Geometry section
+ Geometry section
+   9  -765.54838885  -765.54838911    -0.00000027  0.00011490  0.00024266  0.00004290  0.00246722  0.00340316  0.00008726    102.20
+
+ END OF GEOMETRY OPTIMIZATION.
+
+ Current geometry (xyz format, in Angstrom)
+
+   13
+ MP2/6-31G(D,P)  ENERGY=-765.54838911
+ C         -1.1936724839        0.0205278107       -0.5483653731
+ C          0.0245252415        0.0080436848       -1.2290319990
+ C         -1.2010680206        0.0526131729        0.8466168467
+ C          0.0044298753        0.0192381952        1.5543682992
+ C          1.2197092500        0.0190124603        0.8655691562
+ C          1.2324592083        0.0069445460       -0.5286839412
+ H         -2.1231619692        0.0347787530       -1.1024066862
+ H         -2.1420704312        0.0901135304        1.3834811326
+ H          2.1414942253        0.0109811713        1.4324934365
+ H          2.1701740931       -0.0005573563       -1.0688149110
+ Cl         0.0374258915       -0.0175991253       -2.9689581893
+ O          0.0478877694        0.1014292013        2.9324454644
+ H         -0.6292736439       -0.4827061416        3.2957151274
+
+ **********************************************************************************************************************************
+
+ Geometry written to block  1 of record 700
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      20      108.54       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700     1380     5200   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP      MP2  
+
+              2       7        4.22       700     1000      520     2100     4100     9001      520(1)
+                                         GEOM     BASIS   MCVARS     RHF     CPHF    DEN_MP2  MCVARS    
+
+ PROGRAMS   *        TOTAL      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG
+ CPU TIMES  *       388.17    102.21      5.34      0.13    107.15      5.18      0.12     99.20      4.72      0.12     56.74
+ REAL TIME  *       499.42 SEC
+ DISK USED  *       137.37 MB (local),        2.81 GB (total)
+ SF USED    *       204.22 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+ SETTING EMP2(4)        =      -765.54838911  AU                              
+ SETTING THLIST(4)      =        45.00000000                                  
+
+ DO I                   =         5.00000000   
+ SETTING II             =         5.00000000                                  
+ SETTING THETA          =        60.00000000                                  
+
+
+ PROGRAM * RHF-SCF (CLOSED SHELL)       Authors: W. Meyer, H.-J. Werner
+
+
+ NUMBER OF ELECTRONS:      33+   33-    SPACE SYMMETRY=1    SPIN SYMMETRY: Singlet 
+ CONVERGENCE THRESHOLDS:    1.00E-07 (Density)    1.00E-07 (Energy)
+ MAX. NUMBER OF ITERATIONS:       60
+ INTERPOLATION TYPE:            DIIS
+ INTERPOLATION STEPS:              2 (START)      1 (STEP)
+ LEVEL SHIFTS:                  0.00 (CLOSED)  0.00 (OPEN) 
+
+
+
+ Molecular orbitals read from record     2100.2  Type=RHF/CANONICAL (state 1.1)
+
+ Molecular orbital dump at record        2100.2
+
+ ITERATION    DDIFF          GRAD             ENERGY        2-EL.EN.            DIPOLE MOMENTS         DIIS   ORB.
+    1      0.000D+00      0.000D+00      -764.46475941   1345.414219   -0.44110   -0.41482    0.66549    0    start
+    2      0.000D+00      0.716D-08      -764.46475941   1345.414218   -0.44110   -0.41482    0.66549    0    orth
+
+ Final occupancy:  33
+
+ !RHF STATE  1.1 Energy              -764.464759410199
+ Nuclear energy                       393.60722676
+ One-electron energy                -1830.77909530
+ Two-electron energy                  672.70710912
+ Virial quotient                       -1.00041658
+ !RHF STATE  1.1 Dipole moment         -0.44109576    -0.41481600     0.66548723
+ Dipole moment /Debye                  -1.12108016    -1.05428806     1.69138903
+
+ Orbital energies:
+
+         1.1          2.1          3.1          4.1          5.1          6.1          7.1          8.1          9.1         10.1
+   -104.819207   -20.595752   -11.311602   -11.299801   -11.259141   -11.257406   -11.250319   -11.245442   -10.557924    -8.026541
+
+        11.1         12.1         13.1         14.1         15.1         16.1         17.1         18.1         19.1         20.1
+     -8.023216    -8.023152    -1.401010    -1.186698    -1.112898    -1.034718    -0.985671    -0.858956    -0.819561    -0.738563
+
+        21.1         22.1         23.1         24.1         25.1         26.1         27.1         28.1         29.1         30.1
+     -0.679134    -0.657983    -0.633457    -0.604751    -0.597979    -0.558262    -0.533486    -0.528354    -0.500885    -0.454590
+
+        31.1         32.1         33.1         34.1         35.1
+     -0.452013    -0.353894    -0.320072     0.121725     0.136871
+
+
+ HOMO     33.1    -0.320072 =      -8.7096eV
+ LUMO     34.1     0.121725 =       3.3123eV
+ LUMO-HOMO         0.441797 =      12.0219eV
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      20      108.54       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700     1380     5200   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP      MP2  
+
+              2       7        4.22       700     1000      520     2100     4100     9001      520(1)
+                                         GEOM     BASIS   MCVARS     RHF     CPHF    DEN_MP2  MCVARS    
+
+ PROGRAMS   *        TOTAL    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF
+ CPU TIMES  *       388.29      0.12    102.21      5.34      0.13    107.15      5.18      0.12     99.20      4.72      0.12
+ REAL TIME  *       499.57 SEC
+ DISK USED  *       137.37 MB (local),        2.81 GB (total)
+ SF USED    *       204.22 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+
+
+ PROGRAM * MP2 (Closed-shell)     Authors: C. Hampel, H.-J. Werner, 1991, M. Deegan, P.J. Knowles, 1992
+
+
+ Convergence thresholds:  THRVAR = 1.00D-12  THRDEN = 1.00D-08
+
+ Number of core orbitals:          12 (  12 )
+ Number of closed-shell orbitals:  21 (  21 )
+ Number of external orbitals:     108 ( 108 )
+
+ Molecular orbitals read from record     2100.2  Type=RHF/CANONICAL (state 1.1)
+
+ Number of N-1 electron functions:              21
+ Number of N-2 electron functions:             231
+ Number of singly external CSFs:              2268
+ Number of doubly external CSFs:           2573046
+ Total number of CSFs:                     2575315
+
+ Length of J-op  integral file:               0.00 MB
+ Length of K-op  integral file:               1.37 MB
+
+ Integral transformation finished. Total CPU:   2.70 sec, npass=  1  Memory used:   7.85 MW
+
+ Memory needed for MP2:                      0.09 MW
+
+ SCS-MP2 correlation energy:           -1.048532416188   (PS=  1.200000  PT=  0.333333)
+ SCS-MP2 total energy:               -765.513291826386
+
+
+  Reference energy                   -764.464759410197
+  MP2 singlet pair energy              -0.647781817909
+  MP2 triplet pair energy              -0.435847877193
+  MP2 correlation energy               -1.083629695102
+
+ !MP2 total energy                   -765.548389105299
+
+ KEXT needed  1 integral passes. Memory used:   9.53 MW  CPU time:      1.71 sec
+
+
+ Starting Coupled-perturbed Hartree-Fock, convergence threshold= 1.0D-06
+
+ ITER   MIC  DIIS      VAR         VARC       CPU
+   1     0     1    0.75D-01    0.30D-02     0.03
+   2     7     2    0.57D-03    0.31D-03     0.16
+   3     4     3    0.28D-04    0.61D-05     0.24
+   4     3     4    0.90D-06    0.37D-06     0.30
+
+ CPHF convergence reached in  4 macroiterations and   14 microiterations.   Accuracy: 8.9625D-07
+
+ CPHF solution written to record  4100.2
+
+ Dipole moments (unrelaxed):           -0.43531406    -0.40911215     0.66604684
+ Orbital relaxation contribution:       0.01458983     0.01774412    -0.02240943
+ !MP2 STATE  1.1 Dipole moment         -0.42072422    -0.39136804     0.64363741
+ Dipole moment /Debye                  -1.06930427    -0.99469317     1.63585597
+
+ CPU-time for density and lagrangian:                  0.07 sec
+ CPU-time for coupled-perturbed hartree-fock:          0.30 sec
+
+ MP2 gradient info saved on record         5201.1
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      21      130.59       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700     1380     5200   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP      MP2  
+                                         5201   
+                                          MP2  
+
+              2       7        4.22       700     1000      520     2100     4100     9001      520(1)
+                                         GEOM     BASIS   MCVARS     RHF     CPHF    DEN_MP2  MCVARS    
+
+ PROGRAMS   *        TOTAL       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2
+ CPU TIMES  *       393.51      5.22      0.12    102.21      5.34      0.13    107.15      5.18      0.12     99.20      4.72
+ REAL TIME  *       508.20 SEC
+ DISK USED  *       137.37 MB (local),        2.81 GB (total)
+ SF USED    *       204.22 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+
+
+ PROGRAM * OPT (Geometry optimization)     Authors: F. Eckert and H.-J. Werner
+
+
+ BFGS update of hessian
+
+
+********** USER DEFINED INT/FIX/CONSTRAINTS ****************
+
+List of primitive internal coordinates
+
+     N      Name     Type   Natoms   Atom list
+
+     1    D1         Dihedral    4      C1   C2   O1   H1  
+
+List of user defined internal/fixed coordinates and constraints
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    N      Name   Type      Pname     Coeff       Value   Unit
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    1    Cns001    Con     D1         1.000    60.00000   Degree
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+******************************************************************
+
+
+
+ Geometry optimization using default procedure for command MP2
+
+ Geometry written to block  1 of record 700
+
+ SLAPAF optimizer by R. Lindh and Ignacio F. Galvan entered
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     60.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    45.0000   / Degree    0.785398 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.785398  1.047198
+
+
+ ITER.   ENERGY(OLD)    ENERGY(NEW)      DE          GRADMAX     GRADNORM    GRADRMS     STEPMAX     STEPLEN     STEPRMS   CPU-time
+   1  -765.54838911  -765.54758796     0.00080114  0.00411973  0.00735728  0.00117811  0.06936371  0.11379708  0.00291787     11.39
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     60.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    51.6193   / Degree    0.900927 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      0.900927  1.047198
+
+   2  -765.54758796  -765.54689272     0.00069524  0.00998061  0.01306062  0.00209137  0.10691608  0.15013083  0.00384951     23.23
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     60.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    58.2640   / Degree    1.016898 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.016898  1.047198
+
+   3  -765.54689272  -765.54684869     0.00004404  0.01047544  0.01353762  0.00216775  0.05343517  0.08043614  0.00206247     33.68
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     60.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    59.9979   / Degree    1.047161 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.047161  1.047198
+
+   4  -765.54684869  -765.54691835    -0.00006966  0.00752599  0.01055468  0.00169010  0.02964912  0.04776126  0.00122465     44.97
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     60.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    59.9978   / Degree    1.047159 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.047159  1.047198
+
+   5  -765.54691835  -765.54694543    -0.00002708  0.00455232  0.00800826  0.00128235  0.01681651  0.02843051  0.00072899     57.42
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     60.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    59.9998   / Degree    1.047194 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.047194  1.047198
+
+   6  -765.54694543  -765.54698345    -0.00003803  0.00355150  0.00716843  0.00114787  0.02960082  0.05611723  0.00143890     70.17
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     60.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    60.0000   / Degree    1.047198 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.047198  1.047198
+
+   7  -765.54698345  -765.54699797    -0.00001452  0.00290499  0.00648116  0.00103782  0.01347422  0.02869119  0.00073567     80.59
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     60.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    60.0000   / Degree    1.047198 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.047198  1.047198
+
+   8  -765.54699797  -765.54700536    -0.00000739  0.00333516  0.00667438  0.00106876  0.00583972  0.01370840  0.00035150     91.68
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     60.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    59.9999   / Degree    1.047196 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.047196  1.047198
+
+   9  -765.54700536  -765.54700992    -0.00000456  0.00405362  0.00709581  0.00113624  0.00471494  0.00900093  0.00023079    102.71
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     60.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    60.0000   / Degree    1.047198 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.047198  1.047198
+
+  10  -765.54700992  -765.54701329    -0.00000337  0.00410972  0.00703691  0.00112681  0.00731589  0.01175542  0.00030142    114.30
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     60.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    60.0000   / Degree    1.047198 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.047198  1.047198
+
+  11  -765.54701329  -765.54701405    -0.00000076  0.00376685  0.00669994  0.00107285  0.00445329  0.00590035  0.00015129    125.19
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     60.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    60.0000   / Degree    1.047198 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.047198  1.047198
+
+ Geometry section
+ Geometry section
+  12  -765.54701405  -765.54701435    -0.00000030  0.00008543  0.00021940  0.00003878  0.00366174  0.00496044  0.00012719    137.35
+
+ END OF GEOMETRY OPTIMIZATION.
+
+ Current geometry (xyz format, in Angstrom)
+
+   13
+ MP2/6-31G(D,P)  ENERGY=-765.54701435
+ C         -1.1989697871        0.0277466602       -0.5576698389
+ C          0.0247221424        0.0009016778       -1.2290799343
+ C         -1.2155888538        0.0736570628        0.8366556441
+ C         -0.0149980516        0.0419180806        1.5524281411
+ C          1.2049442583        0.0277217182        0.8730308626
+ C          1.2281802313        0.0001366251       -0.5215363441
+ H         -2.1237862397        0.0429091965       -1.1194788621
+ H         -2.1571555098        0.1237188023        1.3705067017
+ H          2.1226793722        0.0240913778        1.4466444543
+ H          2.1691509471       -0.0168204730       -1.0557615371
+ Cl         0.0492466598       -0.0416811486       -2.9684958413
+ O          0.0046600086        0.1456272665        2.9343969081
+ H         -0.5042261722       -0.5871069436        3.3027880092
+
+ **********************************************************************************************************************************
+
+ Geometry written to block  1 of record 700
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      20      108.54       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700     1380     5200   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP      MP2  
+
+              2       7        4.22       700     1000      520     2100     4100     9001      520(1)
+                                         GEOM     BASIS   MCVARS     RHF     CPHF    DEN_MP2  MCVARS    
+
+ PROGRAMS   *        TOTAL      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG
+ CPU TIMES  *       530.86    137.34      5.22      0.12    102.21      5.34      0.13    107.15      5.18      0.12     99.20
+ REAL TIME  *       698.01 SEC
+ DISK USED  *       137.37 MB (local),        2.81 GB (total)
+ SF USED    *       204.22 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+ SETTING EMP2(5)        =      -765.54701435  AU                              
+ SETTING THLIST(5)      =        60.00000000                                  
+
+ DO I                   =         6.00000000   
+ SETTING II             =         6.00000000                                  
+ SETTING THETA          =        75.00000000                                  
+
+
+ PROGRAM * RHF-SCF (CLOSED SHELL)       Authors: W. Meyer, H.-J. Werner
+
+
+ NUMBER OF ELECTRONS:      33+   33-    SPACE SYMMETRY=1    SPIN SYMMETRY: Singlet 
+ CONVERGENCE THRESHOLDS:    1.00E-07 (Density)    1.00E-07 (Energy)
+ MAX. NUMBER OF ITERATIONS:       60
+ INTERPOLATION TYPE:            DIIS
+ INTERPOLATION STEPS:              2 (START)      1 (STEP)
+ LEVEL SHIFTS:                  0.00 (CLOSED)  0.00 (OPEN) 
+
+
+
+ Molecular orbitals read from record     2100.2  Type=RHF/CANONICAL (state 1.1)
+
+ Molecular orbital dump at record        2100.2
+
+ ITERATION    DDIFF          GRAD             ENERGY        2-EL.EN.            DIPOLE MOMENTS         DIIS   ORB.
+    1      0.000D+00      0.000D+00      -764.46377590   1345.192383   -0.33764   -0.51668    0.63651    0    start
+    2      0.000D+00      0.949D-08      -764.46377590   1345.192382   -0.33764   -0.51668    0.63651    0    orth
+
+ Final occupancy:  33
+
+ !RHF STATE  1.1 Energy              -764.463775895854
+ Nuclear energy                       393.46600031
+ One-electron energy                -1830.52596719
+ Two-electron energy                  672.59619099
+ Virial quotient                       -1.00041636
+ !RHF STATE  1.1 Dipole moment         -0.33763731    -0.51667708     0.63650908
+ Dipole moment /Debye                  -0.85813223    -1.31317612     1.61773875
+
+ Orbital energies:
+
+         1.1          2.1          3.1          4.1          5.1          6.1          7.1          8.1          9.1         10.1
+   -104.819864   -20.592207   -11.309156   -11.301378   -11.258452   -11.257165   -11.250092   -11.246572   -10.558594    -8.027209
+
+        11.1         12.1         13.1         14.1         15.1         16.1         17.1         18.1         19.1         20.1
+     -8.023878    -8.023821    -1.396459    -1.187090    -1.113049    -1.034514    -0.985433    -0.857216    -0.819034    -0.736579
+
+        21.1         22.1         23.1         24.1         25.1         26.1         27.1         28.1         29.1         30.1
+     -0.675901    -0.659673    -0.638181    -0.604640    -0.596875    -0.551177    -0.535368    -0.528043    -0.493025    -0.456807
+
+        31.1         32.1         33.1         34.1         35.1
+     -0.452539    -0.353442    -0.323362     0.122071     0.134449
+
+
+ HOMO     33.1    -0.323362 =      -8.7991eV
+ LUMO     34.1     0.122071 =       3.3217eV
+ LUMO-HOMO         0.445433 =      12.1208eV
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      20      108.54       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700     1380     5200   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP      MP2  
+
+              2       7        4.22       700     1000      520     2100     4100     9001      520(1)
+                                         GEOM     BASIS   MCVARS     RHF     CPHF    DEN_MP2  MCVARS    
+
+ PROGRAMS   *        TOTAL    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF
+ CPU TIMES  *       530.98      0.13    137.34      5.22      0.12    102.21      5.34      0.13    107.15      5.18      0.12
+ REAL TIME  *       698.15 SEC
+ DISK USED  *       137.37 MB (local),        2.81 GB (total)
+ SF USED    *       204.22 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+
+
+ PROGRAM * MP2 (Closed-shell)     Authors: C. Hampel, H.-J. Werner, 1991, M. Deegan, P.J. Knowles, 1992
+
+
+ Convergence thresholds:  THRVAR = 1.00D-12  THRDEN = 1.00D-08
+
+ Number of core orbitals:          12 (  12 )
+ Number of closed-shell orbitals:  21 (  21 )
+ Number of external orbitals:     108 ( 108 )
+
+ Molecular orbitals read from record     2100.2  Type=RHF/CANONICAL (state 1.1)
+
+ Number of N-1 electron functions:              21
+ Number of N-2 electron functions:             231
+ Number of singly external CSFs:              2268
+ Number of doubly external CSFs:           2573046
+ Total number of CSFs:                     2575315
+
+ Length of J-op  integral file:               0.00 MB
+ Length of K-op  integral file:               1.37 MB
+
+ Integral transformation finished. Total CPU:   3.55 sec, npass=  1  Memory used:   7.85 MW
+
+ Memory needed for MP2:                      0.09 MW
+
+ SCS-MP2 correlation energy:           -1.048212920392   (PS=  1.200000  PT=  0.333333)
+ SCS-MP2 total energy:               -765.511988816248
+
+
+  Reference energy                   -764.463775895856
+  MP2 singlet pair energy              -0.647650191879
+  MP2 triplet pair energy              -0.435588252005
+  MP2 correlation energy               -1.083238443885
+
+ !MP2 total energy                   -765.547014339740
+
+ KEXT needed  1 integral passes. Memory used:   9.53 MW  CPU time:      1.60 sec
+
+
+ Starting Coupled-perturbed Hartree-Fock, convergence threshold= 1.0D-06
+
+ ITER   MIC  DIIS      VAR         VARC       CPU
+   1     0     1    0.73D-01    0.30D-02     0.02
+   2     7     2    0.57D-03    0.30D-03     0.15
+   3     4     3    0.27D-04    0.60D-05     0.21
+   4     3     4    0.89D-06    0.36D-06     0.27
+
+ CPHF convergence reached in  4 macroiterations and   14 microiterations.   Accuracy: 8.9315D-07
+
+ CPHF solution written to record  4100.2
+
+ Dipole moments (unrelaxed):           -0.33342657    -0.51004581     0.63622314
+ Orbital relaxation contribution:       0.01078755     0.01937853    -0.03022583
+ !MP2 STATE  1.1 Dipole moment         -0.32263903    -0.49066728     0.60599731
+ Dipole moment /Debye                  -0.82001290    -1.24707015     1.54019064
+
+ CPU-time for density and lagrangian:                  0.08 sec
+ CPU-time for coupled-perturbed hartree-fock:          0.27 sec
+
+ MP2 gradient info saved on record         5201.1
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      21      130.59       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700     1380     5200   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP      MP2  
+                                         5201   
+                                          MP2  
+
+              2       7        4.22       700     1000      520     2100     4100     9001      520(1)
+                                         GEOM     BASIS   MCVARS     RHF     CPHF    DEN_MP2  MCVARS    
+
+ PROGRAMS   *        TOTAL       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2
+ CPU TIMES  *       537.22      6.24      0.13    137.34      5.22      0.12    102.21      5.34      0.13    107.15      5.18
+ REAL TIME  *       707.35 SEC
+ DISK USED  *       137.37 MB (local),        2.81 GB (total)
+ SF USED    *       204.22 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+
+
+ PROGRAM * OPT (Geometry optimization)     Authors: F. Eckert and H.-J. Werner
+
+
+ BFGS update of hessian
+
+
+********** USER DEFINED INT/FIX/CONSTRAINTS ****************
+
+List of primitive internal coordinates
+
+     N      Name     Type   Natoms   Atom list
+
+     1    D1         Dihedral    4      C1   C2   O1   H1  
+
+List of user defined internal/fixed coordinates and constraints
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    N      Name   Type      Pname     Coeff       Value   Unit
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    1    Cns001    Con     D1         1.000    75.00000   Degree
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+******************************************************************
+
+
+
+ Geometry optimization using default procedure for command MP2
+
+ Geometry written to block  1 of record 700
+
+ SLAPAF optimizer by R. Lindh and Ignacio F. Galvan entered
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     75.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    60.0000   / Degree    1.047198 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.047198  1.308997
+
+
+ ITER.   ENERGY(OLD)    ENERGY(NEW)      DE          GRADMAX     GRADNORM    GRADRMS     STEPMAX     STEPLEN     STEPRMS   CPU-time
+   1  -765.54701434  -765.54638459     0.00062975  0.00369280  0.00666283  0.00106691  0.10120545  0.13150048  0.00337181     11.35
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     75.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    66.6234   / Degree    1.162797 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.162797  1.308997
+
+   2  -765.54638459  -765.54584766     0.00053693  0.00725699  0.00968909  0.00155150  0.12640492  0.15607531  0.00400193     23.16
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     75.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    73.2598   / Degree    1.278624 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.278624  1.308997
+
+   3  -765.54584766  -765.54588752    -0.00003986  0.00760889  0.00976919  0.00156432  0.06714951  0.12163037  0.00311873     34.19
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     75.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    74.9915   / Degree    1.308849 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.308849  1.308997
+
+   4  -765.54588752  -765.54590805    -0.00002053  0.00244488  0.00468992  0.00075099  0.01728019  0.03394522  0.00087039     45.02
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     75.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    74.9999   / Degree    1.308995 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.308995  1.308997
+
+   5  -765.54590805  -765.54591736    -0.00000931  0.00203778  0.00436798  0.00069944  0.00943308  0.02169969  0.00055640     55.57
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     75.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    75.0000   / Degree    1.308997 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.308997  1.308997
+
+   6  -765.54591736  -765.54592155    -0.00000419  0.00237759  0.00452398  0.00072442  0.00489487  0.00740570  0.00018989     67.31
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     75.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    75.0000   / Degree    1.308997 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.308997  1.308997
+
+   7  -765.54592155  -765.54592473    -0.00000318  0.00250460  0.00437427  0.00070044  0.00985410  0.01537149  0.00039414     79.78
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     75.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    75.0000   / Degree    1.308997 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.308997  1.308997
+
+   8  -765.54592473  -765.54592609    -0.00000136  0.00246409  0.00428647  0.00068638  0.00549288  0.00728637  0.00018683     90.25
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     75.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    75.0000   / Degree    1.308997 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.308997  1.308997
+
+   9  -765.54592609  -765.54592646    -0.00000038  0.00227130  0.00411855  0.00065950  0.00352861  0.00462084  0.00011848    100.94
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     75.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    75.0000   / Degree    1.308997 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.308997  1.308997
+
+ Geometry section
+ Geometry section
+  10  -765.54592646  -765.54592656    -0.00000009  0.00006771  0.00015616  0.00002760  0.00144277  0.00206601  0.00005297    111.95
+
+ END OF GEOMETRY OPTIMIZATION.
+
+ Current geometry (xyz format, in Angstrom)
+
+   13
+ MP2/6-31G(D,P)  ENERGY=-765.54592656
+ C         -1.2052203578        0.0385939146       -0.5688665988
+ C          0.0245289495       -0.0049777209       -1.2286775499
+ C         -1.2333534239        0.0904955832        0.8250921856
+ C         -0.0391324974        0.0636179904        1.5506549587
+ C          1.1867490658        0.0317628684        0.8826804329
+ C          1.2223605409       -0.0085963055       -0.5116459599
+ H         -2.1245540294        0.0538519615       -1.1395985979
+ H         -2.1763425923        0.1480612935        1.3547671842
+ H          2.1002701130        0.0330243466        1.4632626175
+ H          2.1673571586       -0.0362534867       -1.0382683866
+ Cl         0.0639001074       -0.0586300476       -2.9675111457
+ O         -0.0482710591        0.1753407618        2.9360404104
+ H         -0.3494329697       -0.6634712565        3.3064988127
+
+ **********************************************************************************************************************************
+
+ Geometry written to block  1 of record 700
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      20      108.54       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700     1380     5200   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP      MP2  
+
+              2       7        4.22       700     1000      520     2100     4100     9001      520(1)
+                                         GEOM     BASIS   MCVARS     RHF     CPHF    DEN_MP2  MCVARS    
+
+ PROGRAMS   *        TOTAL      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG
+ CPU TIMES  *       649.24    111.98      6.24      0.13    137.34      5.22      0.12    102.21      5.34      0.13    107.15
+ REAL TIME  *       864.50 SEC
+ DISK USED  *       137.37 MB (local),        2.81 GB (total)
+ SF USED    *       204.22 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+ SETTING EMP2(6)        =      -765.54592656  AU                              
+ SETTING THLIST(6)      =        75.00000000                                  
+
+ DO I                   =         7.00000000   
+ SETTING II             =         7.00000000                                  
+ SETTING THETA          =        90.00000000                                  
+
+
+ PROGRAM * RHF-SCF (CLOSED SHELL)       Authors: W. Meyer, H.-J. Werner
+
+
+ NUMBER OF ELECTRONS:      33+   33-    SPACE SYMMETRY=1    SPIN SYMMETRY: Singlet 
+ CONVERGENCE THRESHOLDS:    1.00E-07 (Density)    1.00E-07 (Energy)
+ MAX. NUMBER OF ITERATIONS:       60
+ INTERPOLATION TYPE:            DIIS
+ INTERPOLATION STEPS:              2 (START)      1 (STEP)
+ LEVEL SHIFTS:                  0.00 (CLOSED)  0.00 (OPEN) 
+
+
+
+ Molecular orbitals read from record     2100.2  Type=RHF/CANONICAL (state 1.1)
+
+ Molecular orbital dump at record        2100.2
+
+ ITERATION    DDIFF          GRAD             ENERGY        2-EL.EN.            DIPOLE MOMENTS         DIIS   ORB.
+    1      0.000D+00      0.000D+00      -764.46311691   1345.001656   -0.20657   -0.58916    0.61160    0    start
+    2      0.000D+00      0.364D-08      -764.46311691   1345.001656   -0.20657   -0.58916    0.61160    0    orth
+
+ Final occupancy:  33
+
+ !RHF STATE  1.1 Energy              -764.463116911164
+ Nuclear energy                       393.34892001
+ One-electron energy                -1830.31286481
+ Two-electron energy                  672.50082789
+ Virial quotient                       -1.00041726
+ !RHF STATE  1.1 Dipole moment         -0.20656807    -0.58916284     0.61159838
+ Dipole moment /Debye                  -0.52500928    -1.49740450     1.55442620
+
+ Orbital energies:
+
+         1.1          2.1          3.1          4.1          5.1          6.1          7.1          8.1          9.1         10.1
+   -104.820406   -20.589423   -11.307293   -11.302660   -11.257844   -11.257115   -11.249715   -11.247786   -10.559143    -8.027757
+
+        11.1         12.1         13.1         14.1         15.1         16.1         17.1         18.1         19.1         20.1
+     -8.024421    -8.024370    -1.392838    -1.187434    -1.113191    -1.034416    -0.985255    -0.855994    -0.818607    -0.734979
+
+        21.1         22.1         23.1         24.1         25.1         26.1         27.1         28.1         29.1         30.1
+     -0.672141    -0.662668    -0.641126    -0.604632    -0.595727    -0.546208    -0.537391    -0.527775    -0.485221    -0.459714
+
+        31.1         32.1         33.1         34.1         35.1
+     -0.452976    -0.353164    -0.326213     0.122763     0.132543
+
+
+ HOMO     33.1    -0.326213 =      -8.8767eV
+ LUMO     34.1     0.122763 =       3.3405eV
+ LUMO-HOMO         0.448976 =      12.2173eV
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      20      108.54       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700     1380     5200   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP      MP2  
+
+              2       7        4.22       700     1000      520     2100     4100     9001      520(1)
+                                         GEOM     BASIS   MCVARS     RHF     CPHF    DEN_MP2  MCVARS    
+
+ PROGRAMS   *        TOTAL    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF
+ CPU TIMES  *       649.60      0.26    111.98      6.24      0.13    137.34      5.22      0.12    102.21      5.34      0.13
+ REAL TIME  *       865.00 SEC
+ DISK USED  *       137.37 MB (local),        2.81 GB (total)
+ SF USED    *       204.22 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+
+
+ PROGRAM * MP2 (Closed-shell)     Authors: C. Hampel, H.-J. Werner, 1991, M. Deegan, P.J. Knowles, 1992
+
+
+ Convergence thresholds:  THRVAR = 1.00D-12  THRDEN = 1.00D-08
+
+ Number of core orbitals:          12 (  12 )
+ Number of closed-shell orbitals:  21 (  21 )
+ Number of external orbitals:     108 ( 108 )
+
+ Molecular orbitals read from record     2100.2  Type=RHF/CANONICAL (state 1.1)
+
+ Number of N-1 electron functions:              21
+ Number of N-2 electron functions:             231
+ Number of singly external CSFs:              2268
+ Number of doubly external CSFs:           2573046
+ Total number of CSFs:                     2575315
+
+ Length of J-op  integral file:               0.00 MB
+ Length of K-op  integral file:               1.37 MB
+
+ Integral transformation finished. Total CPU:   3.47 sec, npass=  1  Memory used:   7.85 MW
+
+ Memory needed for MP2:                      0.09 MW
+
+ SCS-MP2 correlation energy:           -1.047860196135   (PS=  1.200000  PT=  0.333333)
+ SCS-MP2 total energy:               -765.510977107303
+
+
+  Reference energy                   -764.463116911168
+  MP2 singlet pair energy              -0.647501493043
+  MP2 triplet pair energy              -0.435308150064
+  MP2 correlation energy               -1.082809643106
+
+ !MP2 total energy                   -765.545926554274
+
+ KEXT needed  1 integral passes. Memory used:   9.53 MW  CPU time:      1.49 sec
+
+
+ Starting Coupled-perturbed Hartree-Fock, convergence threshold= 1.0D-06
+
+ ITER   MIC  DIIS      VAR         VARC       CPU
+   1     0     1    0.72D-01    0.30D-02     0.03
+   2     7     2    0.57D-03    0.29D-03     0.16
+   3     4     3    0.27D-04    0.59D-05     0.21
+   4     3     4    0.90D-06    0.36D-06     0.27
+
+ CPHF convergence reached in  4 macroiterations and   14 microiterations.   Accuracy: 8.9854D-07
+
+ CPHF solution written to record  4100.2
+
+ Dipole moments (unrelaxed):           -0.20417744    -0.58217461     0.61065403
+ Orbital relaxation contribution:       0.00671754     0.01941185    -0.03710588
+ !MP2 STATE  1.1 Dipole moment         -0.19745990    -0.56276276     0.57354814
+ Dipole moment /Debye                  -0.50186012    -1.43030658     1.45771849
+
+ CPU-time for density and lagrangian:                  0.07 sec
+ CPU-time for coupled-perturbed hartree-fock:          0.27 sec
+
+ MP2 gradient info saved on record         5201.1
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      21      130.59       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700     1380     5200   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP      MP2  
+                                         5201   
+                                          MP2  
+
+              2       7        4.22       700     1000      520     2100     4100     9001      520(1)
+                                         GEOM     BASIS   MCVARS     RHF     CPHF    DEN_MP2  MCVARS    
+
+ PROGRAMS   *        TOTAL       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2
+ CPU TIMES  *       656.29      6.62      0.26    111.98      6.24      0.13    137.34      5.22      0.12    102.21      5.34
+ REAL TIME  *       873.10 SEC
+ DISK USED  *       137.37 MB (local),        2.81 GB (total)
+ SF USED    *       204.22 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+
+
+ PROGRAM * OPT (Geometry optimization)     Authors: F. Eckert and H.-J. Werner
+
+
+ BFGS update of hessian
+
+
+********** USER DEFINED INT/FIX/CONSTRAINTS ****************
+
+List of primitive internal coordinates
+
+     N      Name     Type   Natoms   Atom list
+
+     1    D1         Dihedral    4      C1   C2   O1   H1  
+
+List of user defined internal/fixed coordinates and constraints
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    N      Name   Type      Pname     Coeff       Value   Unit
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    1    Cns001    Con     D1         1.000    90.00000   Degree
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+
+******************************************************************
+
+
+
+ Geometry optimization using default procedure for command MP2
+
+ Geometry written to block  1 of record 700
+
+ SLAPAF optimizer by R. Lindh and Ignacio F. Galvan entered
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     90.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    75.0000   / Degree    1.308997 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.308997  1.570796
+
+
+ ITER.   ENERGY(OLD)    ENERGY(NEW)      DE          GRADMAX     GRADNORM    GRADRMS     STEPMAX     STEPLEN     STEPRMS   CPU-time
+   1  -765.54592655  -765.54555981     0.00036674  0.00225403  0.00411686  0.00065922  0.12008565  0.14384174  0.00368825     11.06
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     90.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    81.6220   / Degree    1.424573 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.424573  1.570796
+
+   2  -765.54555981  -765.54522052     0.00033929  0.00497722  0.00619906  0.00099264  0.12704464  0.15024225  0.00385237     21.74
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     90.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    88.2497   / Degree    1.540247 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.540247  1.570796
+
+   3  -765.54522052  -765.54514476     0.00007576  0.00699069  0.00839899  0.00134491  0.03335144  0.03907040  0.00100181     34.02
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     90.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    90.0000   / Degree    1.570796 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.570796  1.570796
+
+   4  -765.54514476  -765.54514915    -0.00000439  0.00767254  0.00917088  0.00146852  0.00310545  0.00538679  0.00013812     44.77
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     90.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    90.0000   / Degree    1.570796 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.570796  1.570796
+
+   5  -765.54514915  -765.54515220    -0.00000305  0.00779660  0.00955977  0.00153079  0.00185126  0.00385414  0.00009882     56.49
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     90.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    90.0000   / Degree    1.570797 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.570797  1.570796
+
+   6  -765.54515220  -765.54515698    -0.00000477  0.00763950  0.00908589  0.00145491  0.00479326  0.00825186  0.00021159     67.83
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     90.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    90.0001   / Degree    1.570797 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.570797  1.570796
+
+   7  -765.54515698  -765.54487652     0.00028046  0.00795247  0.00937480  0.00150117  0.08191330  0.14703117  0.00377003     79.11
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     90.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    89.9997   / Degree    1.570792 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.570792  1.570796
+
+   8  -765.54487652  -765.54525397    -0.00037745  0.00810209  0.01697939  0.00271888  0.06775197  0.12715088  0.00326028     90.39
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     90.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    90.0104   / Degree    1.570978 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.570978  1.570796
+
+   9  -765.54525397  -765.54541961    -0.00016563  0.00425415  0.00817756  0.00130946  0.04872074  0.06898251  0.00176878    101.85
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     90.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    89.9989   / Degree    1.570777 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.570777  1.570796
+
+  10  -765.54541961  -765.54545043    -0.00003083  0.00167166  0.00303888  0.00048661  0.03086354  0.04912782  0.00125969    113.51
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     90.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    89.9992   / Degree    1.570783 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.570783  1.570796
+
+  11  -765.54545043  -765.54545169    -0.00000125  0.00070421  0.00132956  0.00021290  0.00183143  0.00441243  0.00011314    124.77
+
+ Constraints section
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+ConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraintsConstraints
+Constraints                                                                                        Constraints
+Constraints                                 C O N S T R A I N T S                                  Constraints
+Constraints                                                                                        Constraints
+
+************************************************************************************************************************
+D1     = DIHEDRAL   C1    C2    O1    H1
+VALUES
+D1     =     90.00000000 DEGREE
+************************************************************************************************************************
+
+
+ *************************************************************
+ * Values of the primitive constraints                       *
+ *************************************************************
+ D1       : Dihedral=    90.0000   / Degree    1.570796 / rad
+
+ *******************************************
+ * Values of the constraints   / au or rad *
+ *******************************************
+   Label        C         C0
+ Cns001      1.570796  1.570796
+
+ Geometry section
+ Geometry section
+  12  -765.54545169  -765.54545320    -0.00000151  0.00032364  0.00046044  0.00008140  0.00196156  0.00493242  0.00012647    136.32
+
+ END OF GEOMETRY OPTIMIZATION.
+
+ Current geometry (xyz format, in Angstrom)
+
+   13
+ MP2/6-31G(D,P)  ENERGY=-765.54545320
+ C         -1.2115714497        0.0503531962       -0.5807270969
+ C          0.0242552001       -0.0062242588       -1.2281241262
+ C         -1.2528931411        0.1035992981        0.8129879557
+ C         -0.0661668490        0.0807243564        1.5496393845
+ C          1.1663496801        0.0321679644        0.8939855856
+ C          1.2153045135       -0.0185497506       -0.4996729216
+ H         -2.1249848224        0.0676143000       -1.1608398729
+ H         -2.1981864628        0.1612585893        1.3376809741
+ H          2.0760667354        0.0344124612        1.4810181069
+ H          2.1648223445       -0.0572228300       -1.0174149154
+ Cl         0.0804049415       -0.0691052791       -2.9661664134
+ O         -0.1079145057        0.1865000619        2.9366119295
+ H         -0.1766271789       -0.7027082062        3.3054497736
+
+ **********************************************************************************************************************************
+
+ Geometry written to block  1 of record 700
+
+
+ **********************************************************************************************************************************
+ DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
+              1      20      108.54       500      610      700      900      950      970     1000      129      960     1100   
+                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
+                                         1400     1410     1200     1210     1080     1600     1650     1700     1380     5200   
+                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP      MP2  
+
+              2       7        4.22       700     1000      520     2100     4100     9001      520(1)
+                                         GEOM     BASIS   MCVARS     RHF     CPHF    DEN_MP2  MCVARS    
+
+ PROGRAMS   *        TOTAL      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG       MP2    HF-SCF      OPTG
+ CPU TIMES  *       794.41    138.10      6.62      0.26    111.98      6.24      0.13    137.34      5.22      0.12    102.21
+ REAL TIME  *      1062.20 SEC
+ DISK USED  *       137.37 MB (local),        2.81 GB (total)
+ SF USED    *       204.22 MB
+ GA USED    *         0.00 MB       (max)       0.00 MB       (current)
+ **********************************************************************************************************************************
+ SETTING EMP2(7)        =      -765.54545320  AU                              
+ SETTING THLIST(7)      =        90.00000000                                  
+
+
+   THETA        EMP2
+     0.0   -765.5508661
+    15.0   -765.5505545
+    30.0   -765.5496713
+    45.0   -765.5483891
+    60.0   -765.5470143
+    75.0   -765.5459266
+    90.0   -765.5454532
+                                                  
+
+ MP2/6-31G(D,P)//MP2/6-31G(D,P) energy=   -765.545453198744
+
+       OPTG(MP2)             MP2          HF-SCF       OPTG(MP2)             MP2          HF-SCF       OPTG(MP2)             MP2
+   -765.54545320   -765.54592655   -764.46311691   -765.54592656   -765.54701434   -764.46377590   -765.54701435   -765.54838911
+ **********************************************************************************************************************************
+ Molpro calculation terminated

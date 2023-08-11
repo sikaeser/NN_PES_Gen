@@ -1,0 +1,11 @@
+!MP2/6-31G(d,p)
+ symmetry,nosym
+ wf,charge=0,spin=2
+ basis=6-31G(d,p)
+ geometry={
+  O    0.0 0.0 0.0
+ }
+ 
+ uhf
+ ump2
+

@@ -1,0 +1,30 @@
+Overview of transfer learning using PhysNet - the following readme explains how to do
+transfer learning and explains the scripts/files in this folder. Follow the following
+steps:
+
+Files and Subfolders:
+atom_labels.tsv : unchanged from PhysNet codes (does not need any additional changes)
+neural_network/ : unchanged from PhysNet codes (does not need any additional changes)
+training/ : unchanged from PhysNet codes (does not need any additional changes)
+
+datasets/ : contains the HIGHER LEVEL of theory data
+models/ : contains the best models of your LOWER LEVEL training
+
+run_tl_fad_ccsdt.inp : this is the file that specifies the NN architecture, hyperparameters, etc. It MUST have the same parameters as you were using for the lower level PES.
+Thus, I would make a copy of your original .inp file and adapt things from there.
+There are a few things that need to be changed (--dataset should specify the name/location of the HIGHER LEVEL data set, --num_train/--num_valid should be adapted to the data you have)
+and a few that can be changed (--learning_rate [I would decrease it to 0.0001], --batch_size and --valid_batch_size adapted to something meaningful). Also, it is meaningful to reduce
+--summary_interval, --validation_interval and --save_interval to something smaller for TL data set sizes that are not too big.
+
+train.py: File that is used for training (almost unchanged from the original file with a little adaptation on line 351, where the lower level PES is restored) - Here you need
+to specify the name/location of your best LOW LEVEL models. 
+
+
+0) (Prerequisite for TL) A lower level PES has been obtained using PhysNet and the models (.data-00000-of-00001 and .index files need to be put into the models/folder)
+1) Create a .npz File with the higher level data and deposit into the datasets/ folder
+2) Make a copy of your original .inp file specifying the NN architecture and adapt as needed (see above)
+3) Adapt train.py on line 351
+4) start the TL (e.g. by running "python3 train.py @run_tl_fad_ccsdt.inp")
+5) Monitor the progress using tensorboard and stop as soon as convergence is reached (I suggest to repeat the TL with different splits (e.g. by changing the seed in the .inp file)
+6) Evaluate the obtained models carefully!
+

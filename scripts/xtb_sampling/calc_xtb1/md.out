@@ -1,0 +1,66 @@
+      -----------------------------------------------------------      
+     |                   =====================                   |     
+     |                           x T B                           |     
+     |                   =====================                   |     
+     |                         S. Grimme                         |     
+     |          Mulliken Center for Theoretical Chemistry        |     
+     |                    University of Bonn                     |     
+     |                  Version 6.1 (SAW190416)                  |     
+      -----------------------------------------------------------      
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+   
+   FOR NON-COMMERCIAL, ACADEMIA USE ONLY.
+   
+   Cite this work as:
+   S. Grimme, C. Bannwarth, P. Shushkov, J. Comput. Theory Chem., 2017,
+   13, 1989-2009. DOI: 10.1021/acs.jctc.7b00118
+   C. Bannwarth, S. Ehlert and S. Grimme., J. Comput. Theory Chem., 2019,
+   just accepted. DOI: 10.1021/acs.jctc.8b01176
+   
+   for sTDA-xTB:
+   S. Grimme and C. Bannwarth, J. Chem. Phys., 2016, 145, 054103.
+   DOI: 10.1063/1.4959605
+   
+   in the mass-spec context:
+   V. Asgeirsson, C. Bauer and S. Grimme, Chem. Sci., 2017, 8, 4879.
+   DOI: 10.1039/c7sc00601b
+   
+   for metadynamics refer to:
+   S. Grimme, J. Chem. Theory Comput. Article ASAP, 2019,
+   DOI: 10.1021/acs.jctc.9b00143
+   
+   with help from (in alphabetical order)
+   C. Bannwarth, F. Bohle, G. Brandenburg, E. Caldeweyher, M. Checinski,
+   S. Dohm, S. Ehlert, S. Ehrlich, F. März, H. Neugebauer, J. Pisarek,
+   P. Pracht, P. Shushkov, and S. Spicher.
+   
+ * started run on 2022/08/25 at 09:43:20.204     
+
+           -------------------------------------------------
+          |                Calculation Setup                |
+           -------------------------------------------------
+
+          program call               : xtb -a 0.01 --grad md.xyz
+          coordinate file            : md.xyz
+          omp threads                :                     8
+          number of atoms            :                    13
+          number of electrons        :                    42
+          charge                     :                     0
+          spin                       :                   0.0
+          first test random number   :      0.05942215959117
+
+
+########################################################################
+# WARNING! Please study the warnings concerning your input carefully
+#  - XTBHOME is not set, using HOME instead
+#  - XTBPATH is not set, using XTBHOME instead
+########################################################################
+
+           ------------------------------------------------- 
+          |                 G F N 2 - x T B                 |
+          | Geometry, Frequencies, Noncovalent interactions |
+          |            JCTC 2018 parametrisation            |
+           ------------------------------------------------- 
